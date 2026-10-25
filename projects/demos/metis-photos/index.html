@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Photo Catalog Demo</title>
+<meta name="description" content="Demonstration copy of the Photo Catalog Tool, a workstation for cataloguing family photographs into a digital-collections ingest spreadsheet. Sample records only.">
+<style>
+:root {
+  --paper:#f5f0e8; --cream:#faf7f2; --card:#ffffff; --ink:#1a1410; --muted:#5c4a32; --faint:#8a7a62;
+  --rule:#d6c9b0; --accent:#6b3a2a; --accent-soft:rgba(107,58,42,.10); --edit:#f6e6c8;
+  --stage:#1e1812; --stage-ink:#e8dfcf; --stage-rule:#3a2e20;
+  --ok:#2d6a4f; --ok-bg:#d9ece1; --help:#a5342a; --help-bg:#f7dfdc; --apc:#1f4e70; --apc-bg:#dce9f3; --none-bg:#ece6dc;
+  --serif:Georgia,'Iowan Old Style','Times New Roman',serif;
+  --mono:'SF Mono',Menlo,Consolas,'Courier New',monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper:#17130f; --cream:#1f1a15; --card:#26201a; --ink:#ece4d6; --muted:#c3b399; --faint:#8f8170;
+  --rule:#3d3328; --accent:#d29a7c; --accent-soft:rgba(210,154,124,.14); --edit:#4a3a22;
+  --stage:#0d0b08; --stage-ink:#e8dfcf; --stage-rule:#2c241b;
+  --ok:#8fd0ad; --ok-bg:#1f3a2c; --help:#f0a39a; --help-bg:#4a2420; --apc:#9cc4e4; --apc-bg:#1f3346; --none-bg:#2e2721;
+}}
+:root[data-theme="dark"] {
+  --paper:#17130f; --cream:#1f1a15; --card:#26201a; --ink:#ece4d6; --muted:#c3b399; --faint:#8f8170;
+  --rule:#3d3328; --accent:#d29a7c; --accent-soft:rgba(210,154,124,.14); --edit:#4a3a22;
+  --stage:#0d0b08; --stage-ink:#e8dfcf; --stage-rule:#2c241b;
+  --ok:#8fd0ad; --ok-bg:#1f3a2c; --help:#f0a39a; --help-bg:#4a2420; --apc:#9cc4e4; --apc-bg:#1f3346; --none-bg:#2e2721;
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+html { -webkit-text-size-adjust:100%; }
+body { background:var(--paper); color:var(--ink); font-family:var(--serif); font-size:16px; line-height:1.5; overflow-x:hidden; }
+a { color:var(--accent); }
+button, select, input, textarea { font:inherit; color:inherit; }
+.wrap { max-width:1280px; margin:0 auto; padding:0 16px; }
+
+/* Banner */
+#banner { background:var(--cream); border-bottom:1px solid var(--rule); }
+#banner .wrap { display:flex; flex-wrap:wrap; align-items:baseline; gap:6px 16px; padding-top:12px; padding-bottom:12px; }
+.demo-tag { font-family:var(--mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); border:1px solid var(--accent); border-radius:2px; padding:2px 7px; white-space:nowrap; }
+#banner p { flex:1 1 380px; font-size:15px; color:var(--muted); }
+#banner a.back { font-size:14px; white-space:nowrap; }
+
+header.title .wrap { padding-top:22px; padding-bottom:6px; }
+header.title h1 { font-weight:normal; font-size:26px; letter-spacing:.01em; }
+header.title p { color:var(--muted); font-size:15px; max-width:760px; margin-top:4px; }
+
+/* Toolbar */
+#toolbar { position:sticky; top:0; z-index:40; background:var(--paper); border-bottom:1px solid var(--rule); }
+#toolbar .wrap { display:flex; flex-wrap:wrap; align-items:center; gap:8px 10px; padding-top:10px; padding-bottom:10px; }
+.lbl { font-family:var(--mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--faint); }
+.ctl { background:var(--card); border:1px solid var(--rule); border-radius:3px; padding:5px 9px; font-size:14px; min-height:34px; }
+.btn { background:var(--card); border:1px solid var(--rule); border-radius:3px; padding:5px 12px; font-size:14px; cursor:pointer; min-height:34px; display:inline-flex; align-items:center; gap:6px; white-space:nowrap; }
+.btn:hover:not(:disabled) { border-color:var(--accent); color:var(--accent); }
+.btn:disabled { opacity:.4; cursor:default; }
+.btn.primary { background:var(--accent); border-color:var(--accent); color:var(--paper); }
+.btn.primary:hover { color:var(--paper); opacity:.88; }
+.seg { display:inline-flex; border:1px solid var(--rule); border-radius:3px; overflow:hidden; }
+.seg button { border:none; background:var(--card); padding:5px 12px; min-height:32px; cursor:pointer; font-size:14px; }
+.seg button + button { border-left:1px solid var(--rule); }
+.seg button.on { background:var(--accent); color:var(--paper); }
+#filter { width:150px; }
+.spacer { flex:1; }
+#progress { font-family:var(--mono); font-size:12px; color:var(--faint); white-space:nowrap; }
+
+/* Record view */
+main .wrap { padding-top:14px; padding-bottom:14px; }
+#record { display:flex; height:min(74vh,760px); min-height:480px; border:1px solid var(--rule); border-radius:4px; overflow:hidden; background:var(--card); }
+#stage { flex:0 0 52%; background:var(--stage); color:var(--stage-ink); position:relative; display:flex; flex-direction:column; min-width:0; }
+#stage-img { flex:1; display:flex; align-items:center; justify-content:center; overflow:hidden; padding:18px; position:relative; }
+#photo { max-width:100%; max-height:100%; object-fit:contain; box-shadow:0 4px 22px rgba(0,0,0,.55); cursor:zoom-in; transition:transform .18s ease; }
+#stage.zoomed #photo { cursor:zoom-out; }
+#zoom-hint { position:absolute; top:8px; right:12px; font-family:var(--mono); font-size:10px; color:#a8956f; opacity:.8; pointer-events:none; }
+#side-label { position:absolute; top:8px; left:12px; font-family:var(--mono); font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:#a8956f; }
+#nav { display:flex; justify-content:flex-end; align-items:center; gap:8px; padding:10px 12px; border-top:1px solid var(--stage-rule); flex-wrap:wrap; }
+.nb { height:36px; min-width:40px; padding:0 14px; background:rgba(255,255,255,.04); border:1px solid #8b6914; color:var(--stage-ink); border-radius:2px; cursor:pointer; font-size:14px; }
+.nb:hover:not(:disabled) { background:#6b3a2a; border-color:#6b3a2a; }
+.nb:disabled { opacity:.3; cursor:default; }
+#jump { width:56px; height:36px; text-align:center; background:#2a2218; border:1px solid #8b6914; color:var(--stage-ink); border-radius:2px; font-family:var(--mono); font-size:13px; }
+#nav2 { display:flex; align-items:center; gap:8px; margin-left:18px; padding-left:16px; border-left:1px solid #8b6914; }
+.rot { font-size:18px; padding:0 14px; }
+#rot-lbl { font-family:var(--mono); font-size:11px; color:#a8956f; min-width:30px; text-align:center; }
+
+#form { flex:1; overflow-y:auto; padding:16px 20px 24px; min-width:0; background:var(--cream); }
+#rec-head { display:flex; align-items:center; gap:10px; padding-bottom:9px; margin-bottom:12px; border-bottom:1px solid var(--rule); flex-wrap:wrap; }
+#rec-fn { font-family:var(--mono); font-size:12px; color:var(--muted); word-break:break-all; }
+.badge { font-family:var(--mono); font-size:10px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; padding:2px 6px; border-radius:2px; background:var(--none-bg); color:var(--faint); white-space:nowrap; }
+.b-final { background:var(--ok-bg); color:var(--ok); } .b-help { background:var(--help-bg); color:var(--help); } .b-apc { background:var(--apc-bg); color:var(--apc); }
+#sync { margin-left:auto; font-family:var(--mono); font-size:11px; color:var(--ok); }
+.fg { margin-bottom:12px; } .fg.hidden { display:none; }
+.fl { display:block; font-family:var(--mono); font-size:10px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-bottom:3px; }
+.fi { width:100%; background:var(--card); border:1px solid var(--rule); border-radius:2px; padding:6px 9px; font-size:15px; line-height:1.45; }
+.fi:focus { outline:none; border-color:var(--accent); box-shadow:0 0 0 2px var(--accent-soft); }
+textarea.fi { resize:vertical; min-height:70px; } textarea.fi.tall { min-height:130px; }
+.fi.changed { background:var(--edit); }
+
+/* Grid view */
+#grid { display:none; grid-template-columns:repeat(auto-fill,minmax(170px,1fr)); gap:12px; }
+.gc { background:var(--card); border:1px solid var(--rule); border-radius:3px; overflow:hidden; cursor:pointer; }
+.gc:hover { border-color:var(--accent); }
+.gc.sel { border-color:var(--accent); box-shadow:0 0 0 2px var(--accent-soft); }
+.gc .th { aspect-ratio:1; background:var(--stage); display:flex; align-items:center; justify-content:center; overflow:hidden; }
+.gc .th img { width:100%; height:100%; object-fit:cover; }
+.gc .meta { padding:7px 8px 9px; }
+.gc .fn { font-family:var(--mono); font-size:10px; color:var(--accent); word-break:break-all; }
+.gc .tt { font-size:13px; line-height:1.3; margin:2px 0 5px; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+.gc select { width:100%; font-size:13px; padding:3px 5px; background:var(--cream); border:1px solid var(--rule); border-radius:2px; }
+
+/* Mock spreadsheet */
+#sheet { margin-top:18px; border:1px solid var(--rule); border-radius:4px; background:var(--card); }
+#sheet-head { display:flex; flex-wrap:wrap; align-items:center; gap:6px 14px; padding:10px 14px; border-bottom:1px solid var(--rule); background:var(--cream); }
+#sheet-head h2 { font-weight:normal; font-size:17px; }
+#sheet-note { font-size:13px; color:var(--muted); flex:1 1 260px; }
+#edit-count { font-family:var(--mono); font-size:12px; color:var(--accent); }
+#sheet-scroll { overflow:auto; max-height:340px; }
+#sheet table { border-collapse:collapse; font-size:12px; font-family:var(--mono); min-width:100%; }
+#sheet th, #sheet td { border:1px solid var(--rule); padding:4px 7px; text-align:left; vertical-align:top; white-space:nowrap; max-width:260px; overflow:hidden; text-overflow:ellipsis; }
+#sheet th { position:sticky; top:0; background:var(--none-bg); color:var(--muted); font-weight:600; z-index:1; }
+#sheet th.rn, #sheet td.rn { color:var(--faint); text-align:right; width:34px; background:var(--none-bg); }
+#sheet tr { cursor:pointer; }
+#sheet tr.cur td { background:var(--accent-soft); }
+#sheet td.edited { background:var(--edit) !important; }
+#sheet td.flash { animation:flash 1s ease-out; }
+@keyframes flash { from { box-shadow:inset 0 0 0 2px var(--accent); } to { box-shadow:inset 0 0 0 0 transparent; } }
+
+/* About */
+#about { margin-top:22px; display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px 26px; }
+#about h3 { font-weight:normal; font-size:17px; color:var(--accent); margin-bottom:4px; }
+#about p, #about li { font-size:14.5px; color:var(--muted); }
+#about ul { padding-left:18px; }
+kbd { font-family:var(--mono); font-size:12px; border:1px solid var(--rule); border-bottom-width:2px; border-radius:3px; padding:0 5px; background:var(--card); }
+
+footer { border-top:1px solid var(--rule); margin-top:26px; }
+footer .wrap { display:flex; flex-wrap:wrap; gap:6px 18px; justify-content:space-between; padding-top:14px; padding-bottom:22px; font-size:13px; color:var(--faint); }
+footer .ver { font-family:var(--mono); }
+
+/* Popover + overlay */
+.pop { display:none; position:absolute; z-index:60; background:var(--card); border:1px solid var(--rule); border-radius:4px; box-shadow:0 8px 28px rgba(0,0,0,.18); padding:8px 0; max-height:60vh; overflow-y:auto; min-width:240px; }
+.pop.open { display:block; }
+.pop label { display:flex; gap:8px; align-items:center; padding:5px 14px; font-size:13px; font-family:var(--mono); cursor:pointer; }
+.pop label:hover { background:var(--accent-soft); }
+.pop .acts { display:flex; gap:6px; padding:2px 12px 8px; border-bottom:1px solid var(--rule); margin-bottom:4px; }
+#album { display:none; position:fixed; inset:0; z-index:80; background:rgba(20,14,8,.6); overflow-y:auto; padding:24px 16px; }
+#album.open { display:block; }
+#album-panel { background:var(--cream); max-width:980px; margin:0 auto; border-radius:4px; padding:20px; }
+#album-panel h2 { font-weight:normal; font-size:21px; color:var(--accent); }
+#album-ctl { display:flex; flex-wrap:wrap; gap:8px 12px; align-items:center; padding:12px 0; border-bottom:1px solid var(--rule); margin-bottom:14px; }
+#album-pages { display:flex; flex-direction:column; gap:16px; }
+.apage { background:#fffdf8; color:#1a1410; border:1px solid var(--rule); aspect-ratio:8.5/11; padding:5%; display:grid; gap:4%; position:relative; max-width:640px; width:100%; margin:0 auto; }
+.apage.l1 { grid-template-columns:1fr; grid-template-rows:1fr; }
+.apage.l2 { grid-template-columns:1fr; grid-template-rows:1fr 1fr; }
+.apage.l4 { grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr; }
+.acell { display:flex; flex-direction:column; min-height:0; }
+.acell .aimg { flex:1; min-height:0; display:flex; align-items:center; justify-content:center; }
+.acell img { max-width:100%; max-height:100%; object-fit:contain; }
+.acell .cap { font-size:11px; line-height:1.3; margin-top:5px; }
+.acell .cap b { font-weight:normal; font-style:italic; }
+.acell .note { border:1px dashed #c9b99a; height:12%; min-height:20px; margin-top:5px; }
+.apage .pno { position:absolute; bottom:2%; right:5%; font-family:var(--mono); font-size:11px; color:#5c4a32; }
+
+/* Phone */
+@media (max-width:800px) {
+  #record { flex-direction:column; height:auto; min-height:0; }
+  #stage { flex:none; }
+  #stage-img { height:min(92vw,460px); flex:none; }
+  #nav { justify-content:center; }
+  #nav2 { margin-left:0; padding-left:0; border-left:none; width:100%; justify-content:center; border-top:1px solid var(--stage-rule); padding-top:8px; }
+  #form { overflow:visible; }
+  #filter { width:120px; }
+  #zoom-hint { display:none; }
+  header.title h1 { font-size:22px; }
+  #grid { grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); }
+}
+
+@media print {
+  body.printing > *:not(#album) { display:none !important; }
+  body.printing #album { position:static; background:none; padding:0; display:block; overflow:visible; }
+  body.printing #album-panel { padding:0; background:none; max-width:none; }
+  body.printing #album-panel > *:not(#album-pages) { display:none; }
+  body.printing #album-pages { gap:0; }
+  body.printing .apage { border:none; max-width:none; height:100vh; aspect-ratio:auto; break-after:page; }
+}
+</style>
+</head>
+<body>
+
+<div id="banner"><div class="wrap">
+  <span class="demo-tag">Demonstration copy</span>
+  <p>The full tool connects to a Google Sheet and a folder of scans so photographs can be described, dated and sorted side by side with their catalog rows.</p>
+  <a class="back" href="../../photographs.html#metis-photos">← Back to the project card</a>
+</div></div>
+
+<header class="title"><div class="wrap">
+  <h1>Photo Catalog Tool</h1>
+  <p>Try it with a few sample records. Edit any field and watch the change land in the sample spreadsheet below. Nothing is saved: reloading the page restores the original sample.</p>
+</div></header>
+
+<div id="toolbar"><div class="wrap">
+  <span class="lbl">Tab</span>
+  <select class="ctl" id="tab-sel" aria-label="Spreadsheet tab"></select>
+  <div class="seg" role="group" aria-label="View">
+    <button id="v-record" class="on">Record</button><button id="v-grid">Grid</button>
+  </div>
+  <input class="ctl" id="filter" type="search" placeholder="Filter…" aria-label="Filter rows">
+  <button class="btn" id="col-btn" aria-haspopup="true">Columns</button>
+  <button class="btn" id="album-btn">Album</button>
+  <span class="spacer"></span>
+  <span id="progress"></span>
+  <button class="btn" id="reset-btn" title="Restore the original sample data">Reset sample</button>
+</div></div>
+<div class="pop" id="col-pop"></div>
+
+<main><div class="wrap">
+  <section id="record" aria-label="Record view">
+    <div id="stage">
+      <div id="stage-img">
+        <span id="side-label">Front</span>
+        <span id="zoom-hint">click image to zoom</span>
+        <img id="photo" alt="">
+      </div>
+      <div id="nav">
+        <button class="nb" id="prev">← Prev</button>
+        <input id="jump" type="number" min="1" value="1" aria-label="Go to row">
+        <button class="nb" id="next">Next →</button>
+        <div id="nav2">
+          <button class="nb" id="flip" title="Show the back of the photograph (F)">↩ Verso</button>
+          <button class="nb rot" id="rot-l" title="Rotate counter-clockwise" aria-label="Rotate counter-clockwise">↺</button>
+          <button class="nb rot" id="rot-r" title="Rotate clockwise" aria-label="Rotate clockwise">↻</button>
+          <span id="rot-lbl">0°</span>
+        </div>
+      </div>
+    </div>
+    <div id="form">
+      <div id="rec-head"><span id="rec-fn"></span><span id="rec-badge" class="badge"></span><span id="sync"></span></div>
+      <div id="fields"></div>
+    </div>
+  </section>
+
+  <section id="grid" aria-label="Grid view"></section>
+
+  <section id="sheet" aria-label="Sample spreadsheet">
+    <div id="sheet-head">
+      <h2>Sample spreadsheet</h2>
+      <span id="sheet-note">Stands in for the Google Sheet. Edited cells are highlighted; click a row to open it.</span>
+      <span id="edit-count"></span>
+    </div>
+    <div id="sheet-scroll"><table id="sheet-table"></table></div>
+  </section>
+
+  <section id="about">
+    <div>
+      <h3>What you are looking at</h3>
+      <p>Eleven photographs, fronts and backs, from the Bernice Irene Lavadour Fitzpatrick loan (2024-L-005), with the working notes from the cataloguing spreadsheet as they stood partway through the work. Titles and dates are still mostly blank: this is the stage where the tool does its job.</p>
+    </div>
+    <div>
+      <h3>Try this</h3>
+      <ul>
+        <li>Read the back with <em>Verso</em>, then write a title from what it says.</li>
+        <li>Some backs were scanned sideways: rotate them, or click to zoom in on the handwriting.</li>
+        <li>Change <em>Status</em> and watch the badge update.</li>
+        <li>Switch to Grid, mark a few cards “keep”, then open Album to lay them out as printable pages.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Shortcuts</h3>
+      <p><kbd>←</kbd> <kbd>→</kbd> previous / next record · <kbd>F</kbd> flip front and back · <kbd>Esc</kbd> reset zoom. Shortcuts pause while you type in a field.</p>
+    </div>
+  </section>
+</div></main>
+
+<div id="album" role="dialog" aria-label="Album export"><div id="album-panel">
+  <h2>Album export</h2>
+  <div id="album-ctl">
+    <span class="lbl">Include sort =</span>
+    <select class="ctl" id="al-filter"></select>
+    <span class="lbl">Per page</span>
+    <select class="ctl" id="al-layout"><option value="1">1</option><option value="2">2</option><option value="4" selected>4</option></select>
+    <span class="spacer"></span>
+    <span id="al-count" class="lbl"></span>
+    <button class="btn" id="al-close">Close</button>
+    <button class="btn primary" id="al-print">Print album</button>
+  </div>
+  <div id="album-pages"></div>
+</div></div>
+
+<footer><div class="wrap">
+  <span class="ver">Demo v1 · 25 October 2026</span>
+  <span>Photographs courtesy of the Bernice Irene Lavadour Fitzpatrick loan (2024-L-005) · sample data only, not connected to the working catalog</span>
+</div></footer>
+
+<script>
+const SAMPLE = {"Irene Lavadour (sample)": [{"file": "2024_loan_005_049.jpg", "Status": "Todo", "sort": "", "title": "", "field_linked_agent": "", "field_edtf_date": "", "field_date_display": "1913", "field_description_long": "Arnold, Christina and Lester Lavadour.\nThe child is incorrectly labeled Irma on the back.\nTaken same day as https://arminda.whitman.edu/islandora/christina-lavadour-posed-rocking-chair-beside-house\nhttps://arminda.whitman.edu/node/38648", "field_subject": "", "field_geographic_subject": "", "field_genre": "", "field_extent": ""}, {"file": "2024_loan_005_051.jpg", "Status": "Todo", "sort": "", "title": "", "field_linked_agent": "", "field_edtf_date": "", "field_date_display": "", "field_description_long": "Joe Lavadour, Leland Rondeau, Irma Lavadour, Joe Lavadour, Purdy Rondeau,\nFrancis Lavadour at the ranch\nTop lef to right Irma, Leland, Joe\nbottom: francis, Purdy, Joey", "field_subject": "", "field_geographic_subject": "", "field_genre": "", "field_extent": ""}, {"file": "2024_loan_005_053.jpg", "Status": "Todo", "sort": "", "title": "", "field_linked_agent": "", "field_edtf_date": "", "field_date_display": "", "field_description_long": "Francis Lavadour at the ranch", "field_subject": "", "field_geographic_subject": "", "field_genre": "", "field_extent": ""}, {"file": "2024_loan_005_055.jpg", "Status": "Todo", "sort": "", "title": "", "field_linked_agent": "relators:cre:person:Vincent, Cythia Mary Alice, 1924-2012", "field_edtf_date": "", "field_date_display": "1925", "field_description_long": "Joseph Armand Lavadour and Cythia", "field_subject": "", "field_geographic_subject": "", "field_genre": "", "field_extent": ""}, {"file": "2024_loan_005_057.jpg", "Status": "Todo", "sort": "", "title": "", "field_linked_agent": "relators:cre:person:McGinnis, John, 1875-1963|\nrelators:cre:person:Lewis, Henry Edward, 1877-1893", "field_edtf_date": "", "field_date_display": "", "field_description_long": "Henry Lewis and John McGinnis", "field_subject": "", "field_geographic_subject": "", "field_genre": "", "field_extent": ""}, {"file": "2024_loan_005_059.jpg", "Status": "Todo", "sort": "", "title": "", "field_linked_agent": "", "field_edtf_date": "", "field_date_display": "", "field_description_long": "Cythia Vincent", "field_subject": "", "field_geographic_subject": "", "field_genre": "", "field_extent": ""}, {"file": "2024_loan_005_061.jpg", "Status": "Todo", "sort": "", "title": "", "field_linked_agent": "Jones, Asa John, 1906-1986|\nJones, Frank, 1907-1973", "field_edtf_date": "", "field_date_display": "", "field_description_long": "Asa Jones and Frank Jones  at the Lavadour ranch\nhalf brothers to joe rondeau, eva's husband.", "field_subject": "", "field_geographic_subject": "", "field_genre": "", "field_extent": ""}, {"file": "2024_loan_005_063.jpg", "Status": "Todo", "sort": "", "title": "", "field_linked_agent": "", "field_edtf_date": "", "field_date_display": "", "field_description_long": "Bert Lavadour at the Lavadour ranch.", "field_subject": "", "field_geographic_subject": "", "field_genre": "", "field_extent": ""}, {"file": "2024_loan_005_065.jpg", "Status": "Todo", "sort": "", "title": "", "field_linked_agent": "", "field_edtf_date": "", "field_date_display": "", "field_description_long": "Joe Lavadour 2 at the ranch", "field_subject": "", "field_geographic_subject": "", "field_genre": "", "field_extent": ""}, {"file": "2024_loan_005_067.jpg", "Status": "Todo", "sort": "", "title": "", "field_linked_agent": "Bert Lavadour hauling wood", "field_edtf_date": "", "field_date_display": "", "field_description_long": "", "field_subject": "", "field_geographic_subject": "", "field_genre": "", "field_extent": ""}, {"file": "2024_loan_005_069.jpg", "Status": "Todo", "sort": "", "title": "", "field_linked_agent": "", "field_edtf_date": "", "field_date_display": "", "field_description_long": "Irma\nsame as  https://arminda.whitman.edu/islandora/irma-bertha-lavadour-suiste-king-small-child-0\nIrma Bertha Lavadour Suiste King as a little girl, posed standing on a log in summer. Taken circa 1918 in Cayuse, Oregon, on the Umatilla Indian Reservation.", "field_subject": "", "field_geographic_subject": "", "field_genre": "", "field_extent": ""}]};
+const DROPDOWNS = {
+  'Status': ['', 'Todo', 'APC', 'Final', 'Help!', 'duplicate'],
+  'sort': ['', 'keep', 'remove', 'duplicate', 'eh...?']
+};
+const HIDDEN_BY_DEFAULT = [];
+const TEXTAREA = /description|agent|subject|genre/i, TALL = /description/i;
+
+let data, original, tab, headers, rows, filtered, idx = 0, view = 'record', verso = false, zoom = false;
+const rot = {}, edits = {}, vis = {};
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const stem = fn => fn.replace(/\.[^.]+$/, '');
+
+function init() {
+  original = JSON.stringify(SAMPLE);
+  data = JSON.parse(original);
+  Object.keys(SAMPLE).forEach((t, ti) => Object.values(data[t]).forEach((r, i) => { r._row = i + 2; }));
+  $('tab-sel').innerHTML = Object.keys(SAMPLE).map(t => `<option>${esc(t)}</option>`).join('');
+  switchTab(Object.keys(SAMPLE)[0]);
+}
+
+function switchTab(t) {
+  tab = t; rows = data[t]; headers = Object.keys(SAMPLE[t][0]);
+  headers.forEach(h => { if (!(h in vis)) vis[h] = !HIDDEN_BY_DEFAULT.includes(h); });
+  $('filter').value = ''; filtered = rows.slice(); idx = 0; verso = false;
+  buildCols(); render();
+}
+
+function render() { renderSheet(); if (view === 'record') renderRecord(); else renderGrid(); progress(); }
+
+/* ---------- placeholder images ---------- */
+function placeholder(fn, back, aspect) {
+  const w = 600, h = Math.round(600 / (aspect || .8));
+  const bg = back ? '#efe6d2' : '#cfc3ad', ink = back ? '#7a6a52' : '#4e4231';
+  const lines = back
+    ? `<text x="50%" y="38%" font-family="Georgia,serif" font-size="30" font-style="italic" fill="${ink}" text-anchor="middle">Back of the photograph</text>
+       <text x="50%" y="46%" font-family="Georgia,serif" font-size="22" fill="${ink}" text-anchor="middle">inscriptions and studio marks appear here</text>`
+    : `<rect x="12%" y="10%" width="76%" height="62%" fill="none" stroke="${ink}" stroke-width="3" stroke-dasharray="10 8"/>
+       <text x="50%" y="43%" font-family="Georgia,serif" font-size="34" font-style="italic" fill="${ink}" text-anchor="middle">Image placeholder</text>`;
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">
+    <rect width="100%" height="100%" fill="${bg}"/><rect x="14" y="14" width="${w-28}" height="${h-28}" fill="none" stroke="#fff" stroke-opacity=".5" stroke-width="6"/>
+    ${lines}
+    <text x="50%" y="84%" font-family="Menlo,monospace" font-size="20" fill="${ink}" text-anchor="middle">${esc(fn)}</text>
+    <text x="50%" y="90%" font-family="Menlo,monospace" font-size="16" fill="${ink}" text-anchor="middle" opacity=".75">${back ? 'verso' : 'recto'} · sample record</text>
+    <text x="${w/2}" y="${h*0.06+20}" font-family="Menlo,monospace" font-size="18" fill="${ink}" text-anchor="middle">▲ top</text></svg>`;
+  return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+}
+// Scans live in images/. This collection pairs scans by sequence number:
+// an odd number is the front, and the next (even) number is its back.
+const missing = new Set();
+function setImg(img, fn, back) {
+  const s = stem(fn), m = s.match(/^(.*_)(\d+)$/);
+  const want = back && m ? m[1] + String(+m[2] + 1).padStart(m[2].length, '0') : s;
+  const ph = placeholder(fn, back, .63);
+  img.dataset.want = want;
+  if (img.id === 'photo') img.onload = applyRot;
+  if (missing.has(want)) { img.onerror = null; img.src = ph; return; }
+  img.onerror = () => { if (img.dataset.want !== want) return; missing.add(want); img.onerror = null; img.src = ph; };
+  img.src = 'images/' + want + '.jpg';
+}
+
+const label = r => r.title || (r.field_description_long || '').split('\n')[0].trim() || '(untitled)';
+
+/* ---------- record view ---------- */
+function badgeClass(r) {
+  const s = (r['Status'] || '').toLowerCase();
+  if (s === 'final') return 'b-final'; if (s.includes('help')) return 'b-help'; if (s === 'apc') return 'b-apc'; return '';
+}
+function setBadge(el, r) { el.className = 'badge ' + badgeClass(r); el.textContent = r['Status'] || '—'; }
+
+function renderRecord() {
+  const r = filtered[idx];
+  $('record').style.display = ''; $('grid').style.display = 'none';
+  if (!r) { $('fields').innerHTML = '<p style="color:var(--muted)">No rows match the filter.</p>'; $('rec-fn').textContent = ''; $('photo').removeAttribute('src'); return; }
+  $('rec-fn').textContent = r.file; setBadge($('rec-badge'), r); $('sync').textContent = '';
+  $('prev').disabled = idx === 0; $('next').disabled = idx === filtered.length - 1;
+  $('jump').value = idx + 1; $('jump').max = filtered.length;
+  $('fields').innerHTML = headers.map((h, ci) => {
+    const v = r[h] ?? '', id = 'f' + ci, ch = edits[key(r, h)] ? ' changed' : '';
+    let inp;
+    if (h === 'file') inp = `<input class="fi" id="${id}" value="${esc(v)}" readonly title="Filenames link rows to scans and are not edited here">`;
+    else if (h in DROPDOWNS) inp = `<select class="fi${ch}" id="${id}" data-h="${esc(h)}">${DROPDOWNS[h].map(o => `<option value="${esc(o)}"${o === v ? ' selected' : ''}>${esc(o || '—')}</option>`).join('')}</select>`;
+    else if (TEXTAREA.test(h)) inp = `<textarea class="fi${TALL.test(h) ? ' tall' : ''}${ch}" id="${id}" data-h="${esc(h)}">${esc(v)}</textarea>`;
+    else inp = `<input class="fi${ch}" id="${id}" data-h="${esc(h)}" value="${esc(v)}">`;
+    return `<div class="fg${vis[h] ? '' : ' hidden'}" data-h="${esc(h)}"><label class="fl" for="${id}">${esc(h)}</label>${inp}</div>`;
+  }).join('');
+  renderPhoto();
+}
+function renderPhoto() {
+  const r = filtered[idx]; if (!r) return;
+  resetZoom();
+  setImg($('photo'), r.file, verso);
+  $('photo').alt = (verso ? 'Back of ' : '') + (r.title || r.field_description_long.split('\n')[0] || r.file);
+  $('side-label').textContent = verso ? 'Verso · back' : 'Recto · front';
+  $('flip').textContent = verso ? '↩ Recto' : '↩ Verso';
+  applyRot();
+}
+function applyRot() {
+  const r = filtered[idx]; if (!r) return;
+  const d = rot[r.file] || 0, img = $('photo'), box = $('stage-img');
+  // A quarter-turn swaps width and height, so shrink the image to keep it inside the frame
+  let fit = 1;
+  if (d % 180 && img.offsetWidth) fit = Math.min(1, (box.clientWidth - 36) / img.offsetHeight, (box.clientHeight - 36) / img.offsetWidth);
+  img.style.transform = `rotate(${d}deg) scale(${(fit * (zoom ? 2 : 1)).toFixed(3)})`;
+  $('rot-lbl').textContent = d + '°';
+}
+function resetZoom() { zoom = false; $('stage').classList.remove('zoomed'); $('photo').style.transformOrigin = 'center'; }
+
+function key(r, h) { return tab + '|' + r._row + '|' + h; }
+let syncT;
+function commit(r, h, v, el) {
+  r[h] = v;
+  const orig = SAMPLE[tab][r._row - 2][h] ?? '';
+  if (v === orig) delete edits[key(r, h)]; else edits[key(r, h)] = true;
+  if (el) el.classList.toggle('changed', !!edits[key(r, h)]);
+  if (h === 'Status') setBadge($('rec-badge'), r);
+  $('sync').textContent = 'Saving…'; clearTimeout(syncT);
+  syncT = setTimeout(() => { $('sync').textContent = 'Saved to sample ✓'; renderSheet(r._row, h); setTimeout(() => { if ($('sync').textContent.startsWith('Saved')) $('sync').textContent = ''; }, 1800); }, 450);
+}
+$('fields').addEventListener('input', e => { const h = e.target.dataset.h; if (h) commit(filtered[idx], h, e.target.value, e.target); });
+
+/* ---------- grid view ---------- */
+function renderGrid() {
+  $('record').style.display = 'none'; const g = $('grid'); g.style.display = 'grid';
+  g.innerHTML = filtered.map((r, i) => `<div class="gc${i === idx ? ' sel' : ''}" data-i="${i}">
+      <div class="th"><img data-fn="${esc(r.file)}" alt="" style="${rot[r.file] ? `transform:rotate(${rot[r.file]}deg)` : ''}"></div>
+      <div class="meta"><div class="fn">${esc(r.file)}</div><div class="tt">${esc(label(r))}</div>
+      <select data-i="${i}" aria-label="sort">${DROPDOWNS.sort.map(o => `<option value="${esc(o)}"${o === (r.sort || '') ? ' selected' : ''}>${esc(o ? 'sort: ' + o : 'sort: —')}</option>`).join('')}</select></div></div>`).join('')
+    || '<p style="color:var(--muted)">No rows match the filter.</p>';
+  g.querySelectorAll('img').forEach(img => setImg(img, img.dataset.fn, false));
+}
+$('grid').addEventListener('click', e => {
+  if (e.target.tagName === 'SELECT') return;
+  const c = e.target.closest('.gc'); if (!c) return;
+  idx = +c.dataset.i; verso = false; setView('record');
+});
+$('grid').addEventListener('change', e => { if (e.target.tagName === 'SELECT') { const r = filtered[+e.target.dataset.i]; r.sort = e.target.value; commit(r, 'sort', e.target.value); } });
+
+/* ---------- mock spreadsheet ---------- */
+function renderSheet(flashRow, flashH) {
+  const shown = headers.filter(h => vis[h]);
+  const cur = filtered[idx];
+  $('sheet-table').innerHTML =
+    `<thead><tr><th class="rn">#</th>${shown.map(h => `<th>${esc(h)}</th>`).join('')}</tr></thead><tbody>` +
+    rows.map(r => `<tr data-row="${r._row}" class="${cur && cur._row === r._row ? 'cur' : ''}"><td class="rn">${r._row}</td>${shown.map(h =>
+      `<td class="${edits[key(r, h)] ? 'edited' : ''}${r._row === flashRow && h === flashH ? ' flash' : ''}" title="${esc(r[h])}">${esc(r[h])}</td>`).join('')}</tr>`).join('') + '</tbody>';
+  const n = Object.keys(edits).length;
+  $('edit-count').textContent = n ? `${n} edited cell${n > 1 ? 's' : ''} · resets on reload` : 'no edits yet';
+}
+$('sheet-table').addEventListener('click', e => {
+  const tr = e.target.closest('tr[data-row]'); if (!tr) return;
+  $('filter').value = ''; filtered = rows.slice();
+  idx = filtered.findIndex(r => r._row === +tr.dataset.row); verso = false; setView('record');
+  $('record').scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
+
+/* ---------- toolbar ---------- */
+function progress() {
+  $('progress').textContent = filtered.length ? `${idx + 1} / ${filtered.length}${filtered.length < rows.length ? ` (of ${rows.length})` : ''}` : '0 rows';
+}
+function setView(v) {
+  view = v; $('v-record').classList.toggle('on', v === 'record'); $('v-grid').classList.toggle('on', v === 'grid'); render();
+}
+function go(d) { const n = Math.max(0, Math.min(filtered.length - 1, idx + d)); if (n === idx) return; idx = n; verso = false; render(); }
+$('v-record').onclick = () => setView('record');
+$('v-grid').onclick = () => setView('grid');
+$('tab-sel').onchange = e => switchTab(e.target.value);
+$('prev').onclick = () => go(-1);
+$('next').onclick = () => go(1);
+$('jump').onchange = e => { const n = parseInt(e.target.value, 10); if (!isNaN(n)) { idx = Math.max(0, Math.min(filtered.length - 1, n - 1)); verso = false; render(); } };
+$('flip').onclick = () => { verso = !verso; renderPhoto(); };
+$('rot-l').onclick = () => rotate(-90);
+$('rot-r').onclick = () => rotate(90);
+function rotate(d) { const r = filtered[idx]; if (!r) return; rot[r.file] = ((rot[r.file] || 0) + d + 360) % 360; applyRot(); }
+$('photo').onclick = e => {
+  if (zoom) { resetZoom(); applyRot(); return; }
+  const b = e.target.getBoundingClientRect();
+  e.target.style.transformOrigin = `${((e.clientX - b.left) / b.width) * 100}% ${((e.clientY - b.top) / b.height) * 100}%`;
+  zoom = true; $('stage').classList.add('zoomed'); applyRot();
+};
+$('filter').oninput = e => {
+  const q = e.target.value.toLowerCase().trim();
+  filtered = q ? rows.filter(r => headers.some(h => String(r[h] || '').toLowerCase().includes(q))) : rows.slice();
+  idx = 0; verso = false; render();
+};
+$('reset-btn').onclick = () => {
+  for (const k in edits) delete edits[k]; for (const k in rot) delete rot[k];
+  const fresh = JSON.parse(original);
+  Object.keys(fresh).forEach(t => fresh[t].forEach((r, i) => { r._row = i + 2; }));
+  data = fresh; switchTab(tab);
+};
+
+/* columns popover */
+function buildCols() {
+  const p = $('col-pop');
+  p.innerHTML = `<div class="acts"><button class="btn" data-all="1">Show all</button><button class="btn" data-all="0">Hide all</button></div>` +
+    headers.map(h => `<label><input type="checkbox" data-h="${esc(h)}"${vis[h] ? ' checked' : ''}> ${esc(h)}</label>`).join('');
+}
+$('col-btn').onclick = e => {
+  e.stopPropagation(); const p = $('col-pop');
+  if (p.classList.toggle('open')) {
+    const b = e.currentTarget.getBoundingClientRect();
+    p.style.top = (b.bottom + window.scrollY + 4) + 'px';
+    p.style.left = Math.max(8, Math.min(b.left, window.innerWidth - 260)) + 'px';
+  }
+};
+$('col-pop').addEventListener('click', e => {
+  e.stopPropagation();
+  if (e.target.dataset.all !== undefined) { headers.forEach(h => vis[h] = e.target.dataset.all === '1'); buildCols(); render(); }
+});
+$('col-pop').addEventListener('change', e => { vis[e.target.dataset.h] = e.target.checked; render(); });
+document.addEventListener('click', () => $('col-pop').classList.remove('open'));
+
+/* album */
+function openAlbum() {
+  const vals = [...new Set(rows.map(r => r.sort || ''))];
+  const prev = $('al-filter').value || (vals.includes('keep') ? 'keep' : '(all)');
+  $('al-filter').innerHTML = ['(all)', ...vals].map(v => `<option value="${esc(v)}"${v === prev ? ' selected' : ''}>${esc(v || '(blank)')}</option>`).join('');
+  $('album').classList.add('open'); document.body.style.overflow = 'hidden'; buildAlbum();
+}
+function buildAlbum() {
+  const f = $('al-filter').value, per = +$('al-layout').value;
+  const list = rows.filter(r => f === '(all)' || (r.sort || '').trim() === f.trim());
+  $('al-count').textContent = `${list.length} photograph${list.length === 1 ? '' : 's'}`;
+  let html = '';
+  for (let p = 0; p * per < list.length; p++) {
+    html += `<div class="apage l${per}">` + list.slice(p * per, p * per + per).map(r => `<div class="acell">
+      <div class="aimg"><img data-fn="${esc(r.file)}" alt="" style="${rot[r.file] ? `transform:rotate(${rot[r.file]}deg)` : ''}"></div>
+      <div class="cap"><b>${esc(label(r))}</b>${r.field_date_display ? ' · ' + esc(r.field_date_display) : ''}<br>${esc(r.file)}</div>
+      <div class="note" aria-hidden="true"></div></div>`).join('') + `<span class="pno">${p + 1}</span></div>`;
+  }
+  $('album-pages').innerHTML = html || '<p style="color:var(--muted)">No photographs match.</p>';
+  $('album-pages').querySelectorAll('img').forEach(img => setImg(img, img.dataset.fn, false));
+}
+$('album-btn').onclick = openAlbum;
+$('al-filter').onchange = buildAlbum;
+$('al-layout').onchange = buildAlbum;
+$('al-close').onclick = () => { $('album').classList.remove('open'); document.body.style.overflow = ''; };
+$('al-print').onclick = () => { document.body.classList.add('printing'); window.print(); };
+window.addEventListener('afterprint', () => document.body.classList.remove('printing'));
+
+/* keyboard */
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { if ($('album').classList.contains('open')) $('al-close').click(); else { resetZoom(); applyRot(); } return; }
+  if (['INPUT', 'TEXTAREA', 'SELECT'].includes(e.target.tagName) || view !== 'record' || $('album').classList.contains('open')) return;
+  if (e.key === 'ArrowLeft') { e.preventDefault(); go(-1); }
+  if (e.key === 'ArrowRight') { e.preventDefault(); go(1); }
+  if (e.key === 'f' || e.key === 'F') $('flip').click();
+});
+
+init();
+</script>
+</body>
+</html>

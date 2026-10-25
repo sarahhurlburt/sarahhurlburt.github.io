@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Perkins Journal Letter, 1843–44 — Diplomatic Edition (Demo)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f5f0e8;--paper-2:#ede7d9;--ink:#1c1208;
+  --accent:#3d6b6b;--accent-soft:#e3ecea;--accent-hi:#5a9a9a;
+  --rule:#c9b99a;--line:#a8977a;--muted:#6f5f4c;
+  --rust:#8b3a2a;
+  --bar-bg:#1c1208;--bar-fg:#f5f0e8;--bar-em:#c9b99a;
+  --ms-bg:#2a2318;--ms-fg:#c9b99a;
+  --hit-bg:#f0d060;--hit-fg:#1c1208;--hit-cur-bg:#d98a10;--hit-cur-fg:#fff;
+  --grid:#d3c9b3;--grid-head:#e4dcc9;--cell-bg:#fbf8f2;
+  --shadow:rgba(0,0,0,.18);
+  --f-language:#5b6e3a;--f-kinship:#7a4f2a;--f-food_security:#6b3d78;--f-labor:#3d5a6b;
+  --f-agriculture:#4a6b3d;--f-climate:#3d5e6b;--f-walla:#6b5c3d;--f-settler_perspective:#6b3d3d;--f-note:#6b6b3d;
+  --serif:'Source Serif 4',Georgia,'Times New Roman',serif;
+  --sans:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --mono:ui-monospace,'SF Mono',Menlo,Consolas,'Courier New',monospace;
+  --navh:54px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#1f1b16;--paper-2:#2a251e;--ink:#e8e0d2;
+    --accent:#7fb3b3;--accent-soft:#2a3a38;--accent-hi:#9fcaca;
+    --rule:#4a4034;--line:#6b5d4a;--muted:#a39682;
+    --rust:#e08f78;
+    --bar-bg:#14110d;--bar-fg:#e8e0d2;--bar-em:#b8a98f;
+    --hit-bg:#9c7a1c;--hit-fg:#fff;--hit-cur-bg:#d98a10;--hit-cur-fg:#fff;
+    --grid:#40382d;--grid-head:#322c23;--cell-bg:#241f19;
+    --shadow:rgba(0,0,0,.6);
+    --f-language:#a3b878;--f-kinship:#d1a06c;--f-food_security:#c79ad6;--f-labor:#86b0c7;
+    --f-agriculture:#8fc17c;--f-climate:#7fb8cc;--f-walla:#c4b07e;--f-settler_perspective:#d28f8f;--f-note:#c4c47e;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#1f1b16;--paper-2:#2a251e;--ink:#e8e0d2;
+  --accent:#7fb3b3;--accent-soft:#2a3a38;--accent-hi:#9fcaca;
+  --rule:#4a4034;--line:#6b5d4a;--muted:#a39682;
+  --rust:#e08f78;
+  --bar-bg:#14110d;--bar-fg:#e8e0d2;--bar-em:#b8a98f;
+  --hit-bg:#9c7a1c;--hit-fg:#fff;--hit-cur-bg:#d98a10;--hit-cur-fg:#fff;
+  --grid:#40382d;--grid-head:#322c23;--cell-bg:#241f19;
+  --shadow:rgba(0,0,0,.6);
+  --f-language:#a3b878;--f-kinship:#d1a06c;--f-food_security:#c79ad6;--f-labor:#86b0c7;
+  --f-agriculture:#8fc17c;--f-climate:#7fb8cc;--f-walla:#c4b07e;--f-settler_perspective:#d28f8f;--f-note:#c4c47e;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{background:var(--paper-2);}
+body{font-family:var(--serif);background:var(--paper-2);color:var(--ink);
+  height:100vh;height:100dvh;overflow:hidden;display:flex;flex-direction:column;}
+button,select,input{font:inherit;color:inherit;}
+:focus-visible{outline:2px solid var(--accent-hi);outline-offset:2px;}
+a{color:var(--accent);}
+
+/* ── Banner ── */
+#banner{flex-shrink:0;font-family:var(--sans);font-size:.74rem;line-height:1.45;
+  padding:.45rem 1.25rem;background:color-mix(in srgb,var(--accent) 14%,var(--paper));
+  border-bottom:1px solid color-mix(in srgb,var(--accent) 40%,var(--paper));color:var(--ink);
+  display:flex;gap:.4rem 1.25rem;align-items:baseline;justify-content:space-between;flex-wrap:wrap;}
+#banner .b-text{flex:1 1 380px;min-width:0;}
+#banner .b-back{white-space:nowrap;font-weight:600;}
+
+/* ── Topbar ── */
+#topbar{flex-shrink:0;min-height:52px;background:var(--bar-bg);color:var(--bar-fg);
+  display:flex;align-items:center;padding:0 1.25rem;gap:1rem;border-bottom:3px solid var(--accent);}
+#topbar h1{font-family:var(--serif);font-size:.88rem;font-weight:400;letter-spacing:.04em;
+  flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+#topbar h1 em{font-style:italic;color:var(--bar-em);}
+#page-indicator{font-family:var(--sans);font-size:.72rem;color:var(--bar-em);letter-spacing:.08em;
+  text-transform:uppercase;white-space:nowrap;flex-shrink:0;}
+
+/* ── Main ── */
+#main{flex:1;display:flex;min-height:0;}
+#ms-panel{background:var(--ms-bg);position:relative;overflow:hidden;flex-shrink:0;width:50%;}
+#canvas-wrapper{position:absolute;inset:0;overflow:hidden;cursor:grab;user-select:none;
+  -webkit-user-select:none;touch-action:none;}
+#canvas-wrapper.dragging{cursor:grabbing;}
+#spread{position:absolute;left:50%;top:50%;transform-origin:center center;
+  container-type:inline-size;display:none;will-change:transform;}
+#spread img{display:block;width:100%;height:100%;pointer-events:none;-webkit-user-drag:none;}
+#gutter-line{position:absolute;left:50%;top:0;bottom:0;width:0;
+  border-left:max(2px,.3cqw) dashed rgba(127,179,179,.8);pointer-events:none;}
+#half-marker{position:absolute;top:3%;transform:translateX(-50%);pointer-events:none;
+  font-family:var(--sans);font-weight:700;font-size:max(11px,1.7cqw);white-space:nowrap;
+  color:#e8f4f4;background:rgba(61,107,107,.78);padding:.25em .8em;border-radius:.3em;}
+#zoom-controls{position:absolute;bottom:36px;right:10px;display:none;flex-direction:column;gap:4px;z-index:10;}
+.zoom-btn{font-family:var(--sans);font-size:.85rem;font-weight:700;width:30px;height:30px;
+  background:rgba(28,18,8,.72);border:1px solid rgba(201,185,154,.55);color:var(--ms-fg);
+  border-radius:3px;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1;}
+.zoom-btn:hover{background:rgba(28,18,8,.92);border-color:var(--ms-fg);}
+#ms-label{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);
+  background:rgba(28,18,8,.8);color:var(--ms-fg);font-family:var(--sans);font-size:.62rem;
+  letter-spacing:.1em;text-transform:uppercase;padding:3px 10px;border-radius:2px;
+  pointer-events:none;white-space:nowrap;display:none;max-width:92%;overflow:hidden;text-overflow:ellipsis;}
+#destroyed-notice{display:none;position:absolute;inset:0;overflow:auto;text-align:center;
+  padding:2.5rem 2rem;color:var(--ms-fg);}
+#destroyed-notice h2{font-family:var(--serif);font-size:1.05rem;font-weight:400;margin-bottom:1rem;color:#d89a80;font-style:italic;}
+#destroyed-notice p{font-size:.84rem;line-height:1.65;max-width:300px;margin:0 auto;opacity:.9;}
+
+/* ── Divider ── */
+#divider{width:6px;background:var(--accent);cursor:col-resize;flex-shrink:0;position:relative;z-index:20;transition:background .15s;}
+#divider:hover,#divider.dragging{background:var(--accent-hi);}
+#divider::after{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:2px;height:40px;background:rgba(255,255,255,.25);border-radius:1px;}
+
+/* ── Transcription ── */
+#tx-panel{background:var(--paper);display:flex;flex-direction:column;min-height:0;flex:1;min-width:0;}
+#tx-header{flex-shrink:0;padding:.5rem 1.25rem;border-bottom:1px solid var(--rule);background:var(--paper-2);
+  display:flex;align-items:center;gap:.75rem;flex-wrap:wrap;}
+#tx-page-label{font-family:var(--sans);font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--accent);font-weight:700;flex:1;min-width:0;}
+#tx-image-ref{font-family:var(--mono);font-size:.62rem;color:var(--muted);white-space:nowrap;}
+#search-bar{display:none;flex-shrink:0;padding:.4rem 1.25rem;border-bottom:1px solid var(--rule);
+  background:var(--paper-2);align-items:center;gap:.5rem;}
+#search-bar.visible{display:flex;}
+#search-input{font-family:var(--serif);font-size:.85rem;flex:1;min-width:0;border:1.5px solid var(--line);
+  background:var(--paper);color:var(--ink);padding:.28rem .6rem;border-radius:2px;}
+#search-count{font-family:var(--sans);font-size:.68rem;color:var(--muted);white-space:nowrap;min-width:58px;}
+.search-nav-btn{font-family:var(--sans);font-size:.72rem;background:none;border:1px solid var(--line);
+  color:var(--ink);padding:.2rem .5rem;border-radius:2px;cursor:pointer;}
+.search-nav-btn:hover{border-color:var(--accent);color:var(--accent);}
+#search-close{font-family:var(--sans);font-size:1rem;background:none;border:none;color:var(--muted);cursor:pointer;padding:0 .4rem;}
+#search-close:hover{color:var(--ink);}
+
+#tx-scroll{flex:1;overflow-y:auto;padding:1.4rem 1.75rem 1.4rem 1.5rem;scroll-behavior:smooth;}
+#tx-scroll::-webkit-scrollbar{width:6px;}
+#tx-scroll::-webkit-scrollbar-track{background:var(--paper-2);}
+#tx-scroll::-webkit-scrollbar-thumb{background:var(--line);border-radius:3px;}
+#tx-scroll p{font-size:.95rem;line-height:1.78;margin-bottom:.85em;text-align:justify;hyphens:auto;}
+#tx-scroll strong{font-weight:700;}
+.perkins-underline{text-decoration:underline;text-underline-offset:2px;}
+.uncertain{color:var(--rust);border-bottom:1px dashed var(--rust);}
+.illegible{color:var(--muted);font-family:var(--mono);font-size:.78em;}
+.lc-ref{font-family:var(--mono);font-size:.68em;color:var(--muted);vertical-align:super;}
+mark.search-hit{background:var(--hit-bg);color:var(--hit-fg);border-radius:2px;padding:0 1px;}
+mark.search-hit.current{background:var(--hit-cur-bg);color:var(--hit-cur-fg);}
+
+.index-block{font-family:var(--sans);font-size:.72rem;color:var(--accent);border-left:3px solid var(--accent);
+  padding:.4rem .75rem;margin-bottom:1.1rem;background:var(--accent-soft);border-radius:0 2px 2px 0;line-height:1.5;}
+.index-label{font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-right:.4rem;font-size:.62rem;}
+
+/* Flags: one variable per type */
+.flag{--c:var(--rust);font-family:var(--sans);font-size:.72rem;line-height:1.55;margin:.9rem 0;
+  padding:.45rem .75rem .45rem .9rem;border-left:3px solid var(--c);
+  background:color-mix(in srgb,var(--c) 12%,var(--paper));border-radius:0 2px 2px 0;
+  color:color-mix(in srgb,var(--c) 35%,var(--ink));}
+.flag-label{font-weight:700;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--c);display:inline-block;margin-right:.4rem;}
+.flag-language{--c:var(--f-language)}.flag-kinship{--c:var(--f-kinship)}.flag-food_security{--c:var(--f-food_security)}
+.flag-labor{--c:var(--f-labor)}.flag-agriculture{--c:var(--f-agriculture)}.flag-climate{--c:var(--f-climate)}
+.flag-walla{--c:var(--f-walla)}.flag-settler_perspective{--c:var(--f-settler_perspective)}.flag-note{--c:var(--f-note)}
+mark.flagged{background:color-mix(in srgb,var(--c,var(--accent)) 22%,transparent);color:inherit;
+  border-bottom:2px solid var(--c,var(--accent));padding:0 1px;}
+.editorial-note{font-style:italic;font-size:.8rem;color:var(--muted);border-top:1px solid var(--rule);padding-top:.7rem;margin-top:1rem;}
+.verse-block{margin:1rem 0 1rem 1.5rem;font-style:italic;font-size:.9rem;line-height:1.9;color:color-mix(in srgb,var(--ink) 85%,var(--paper));}
+.verse-line{display:block;}
+
+/* Demo edits */
+.demo-edit{outline:1px dotted var(--accent);outline-offset:2px;}
+.sugg-reading{font-family:var(--sans);font-size:.72em;color:var(--accent);font-weight:600;}
+@keyframes pulse{0%{outline:3px solid var(--accent-hi);outline-offset:3px;background-color:color-mix(in srgb,var(--accent-hi) 35%,transparent);}
+  100%{outline:1px dotted var(--accent);outline-offset:2px;}}
+.demo-edit.pulse{animation:pulse 1.6s ease-out 1;}
+
+/* Citation */
+#tx-citation{margin-top:1.6rem;padding-top:.7rem;border-top:1px solid var(--rule);
+  font-family:var(--sans);font-size:.68rem;line-height:1.55;color:var(--muted);}
+#tx-citation a{color:var(--accent);}
+
+/* Selection toolbar */
+#sel-tools{display:none;position:fixed;z-index:200;background:var(--bar-bg);color:var(--bar-fg);
+  border-radius:6px;padding:.35rem;box-shadow:0 4px 18px var(--shadow);font-family:var(--sans);font-size:.72rem;
+  max-width:min(440px,calc(100vw - 16px));}
+#sel-tools.show{display:block;}
+#sel-tools .row{display:flex;gap:.3rem;align-items:center;flex-wrap:wrap;}
+#sel-tools[hidden-views] .row{display:none;}
+#sel-tools .view{display:none;}
+#sel-tools .view.on{display:flex;}
+.st-btn{font-family:var(--sans);font-size:.72rem;font-weight:600;background:rgba(255,255,255,.1);
+  color:inherit;border:1px solid rgba(255,255,255,.28);border-radius:4px;padding:.32rem .6rem;cursor:pointer;white-space:nowrap;}
+.st-btn:hover{background:rgba(255,255,255,.2);}
+.st-btn.primary{background:var(--accent);border-color:var(--accent);color:#fff;}
+#sel-tools input,#sel-tools select{font-family:var(--sans);font-size:.74rem;background:var(--paper);color:var(--ink);
+  border:1px solid var(--line);border-radius:4px;padding:.3rem .45rem;min-width:0;}
+#sel-tools input{flex:1 1 140px;}
+#sel-tools .hint{padding:.25rem .45rem;}
+
+/* ── Sheet ── */
+#sheet{flex-shrink:0;height:26vh;min-height:90px;display:flex;flex-direction:column;
+  background:var(--paper);}
+#sheet.closed{display:none;}
+#sheet-reopen{display:none;flex-shrink:0;width:100%;font-family:var(--sans);font-size:.72rem;font-weight:700;letter-spacing:.04em;
+  text-align:left;padding:.35rem 1.25rem;background:var(--paper-2);color:var(--accent);border:0;border-top:2px solid var(--accent);cursor:pointer;}
+#sheet-reopen:hover{background:var(--accent-soft);}
+#sheet.closed + #sheet-reopen{display:block;}
+#sheet-resizer{flex-shrink:0;height:7px;margin-top:-2px;background:var(--accent);cursor:row-resize;position:relative;touch-action:none;}
+#sheet-resizer:hover,#sheet-resizer.dragging{background:var(--accent-hi);}
+#sheet-resizer::after{content:'';position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:40px;height:2px;background:rgba(255,255,255,.35);border-radius:1px;}
+#sheet-head{flex-shrink:0;display:flex;align-items:center;gap:.75rem;padding:.3rem 1.25rem;background:var(--paper-2);
+  border-bottom:1px solid var(--rule);font-family:var(--sans);}
+#sheet-head h2{font-size:.72rem;font-weight:700;letter-spacing:.04em;flex:1;min-width:0;}
+.sm-btn{font-family:var(--sans);font-size:.66rem;letter-spacing:.05em;text-transform:uppercase;font-weight:600;
+  background:none;color:var(--accent);border:1px solid var(--accent);padding:.2rem .55rem;border-radius:2px;cursor:pointer;white-space:nowrap;}
+.sm-btn:hover{background:var(--accent-soft);}
+#sheet-scroll{flex:1;overflow:auto;min-height:0;background:var(--cell-bg);}
+table.grid{border-collapse:separate;border-spacing:0;font-family:var(--sans);font-size:.72rem;width:100%;min-width:780px;table-layout:fixed;}
+table.grid th,table.grid td{border-right:1px solid var(--grid);border-bottom:1px solid var(--grid);
+  padding:.22rem .45rem;text-align:left;vertical-align:top;overflow-wrap:anywhere;line-height:1.35;}
+table.grid thead th{position:sticky;top:0;z-index:2;background:var(--grid-head);color:var(--muted);
+  text-align:center;font-weight:600;font-size:.66rem;border-top:0;}
+table.grid th.rn{width:2.6rem;text-align:center;background:var(--grid-head);color:var(--muted);font-weight:500;
+  font-family:var(--mono);font-size:.66rem;position:sticky;left:0;z-index:1;}
+table.grid thead th.rn{z-index:3;}
+table.grid tr.names td{background:var(--grid-head);font-weight:700;color:var(--ink);}
+table.grid td.empty{color:var(--muted);font-style:italic;padding:.6rem .7rem;}
+table.grid tbody tr.edit{cursor:pointer;}
+table.grid tbody tr.edit:hover td{background:color-mix(in srgb,var(--accent) 10%,var(--cell-bg));}
+table.grid td.mono{font-family:var(--mono);font-size:.68rem;}
+@keyframes newrow{0%{background:color-mix(in srgb,var(--accent-hi) 45%,var(--cell-bg));}100%{background:var(--cell-bg);}}
+table.grid tr.new td{animation:newrow 2s ease-out 1;}
+.undo-btn{font-family:var(--sans);font-size:.66rem;background:none;color:var(--rust);border:1px solid var(--rust);
+  border-radius:2px;padding:.1rem .45rem;cursor:pointer;}
+.undo-btn:hover{background:color-mix(in srgb,var(--rust) 15%,transparent);}
+
+/* ── Navbar ── */
+#navbar{flex-shrink:0;height:var(--navh);background:var(--paper-2);border-top:1px solid var(--rule);
+  display:flex;align-items:center;justify-content:space-between;padding:0 1.25rem;gap:.5rem;}
+.nav-btn{font-family:var(--sans);font-size:.75rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--ink);background:none;border:1.5px solid var(--line);padding:.35rem .9rem;border-radius:2px;
+  cursor:pointer;transition:all .15s;min-width:78px;white-space:nowrap;}
+.nav-btn:hover{border-color:var(--accent);color:var(--accent);}
+.nav-btn:disabled{opacity:.35;cursor:default;}
+#page-jump{display:flex;align-items:center;gap:.4rem;font-family:var(--sans);font-size:.75rem;color:var(--muted);}
+#page-select{font-family:var(--mono);font-size:.72rem;border:1.5px solid var(--line);background:var(--paper);
+  color:var(--ink);padding:.25rem .35rem;border-radius:2px;cursor:pointer;max-width:100%;}
+.icon-btn{font-family:var(--sans);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);
+  background:none;border:1px solid var(--accent);padding:.3rem .6rem;border-radius:2px;cursor:pointer;white-space:nowrap;}
+.icon-btn:hover,.icon-btn[aria-expanded="true"]{background:var(--accent-soft);}
+
+/* ── Footer ── */
+#footer{flex-shrink:0;font-family:var(--sans);font-size:.64rem;color:var(--muted);text-align:center;
+  padding:.3rem 1.25rem;border-top:1px solid var(--rule);background:var(--paper-2);line-height:1.4;}
+
+/* ── Legend ── */
+#legend-panel{display:none;position:fixed;bottom:calc(var(--navh) + 8px);right:1.25rem;background:var(--paper);
+  border:1px solid var(--line);border-radius:4px;padding:1rem 1.2rem;box-shadow:0 4px 20px var(--shadow);z-index:100;
+  width:285px;max-height:calc(100vh - 160px);overflow:auto;font-family:var(--sans);font-size:.72rem;color:var(--ink);}
+#legend-panel h3{font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.65rem;color:var(--accent);}
+.legend-item{display:flex;align-items:center;gap:.45rem;margin-bottom:.3rem;line-height:1.3;}
+.legend-swatch{width:12px;height:12px;border-radius:1px;flex-shrink:0;}
+.legend-swatch.ix{background:var(--accent-soft);border:1px solid var(--accent);}
+.legend-swatch.fl{border-left:3px solid var(--c);background:color-mix(in srgb,var(--c) 18%,var(--paper));}
+.legend-item .fl-name{color:var(--c);font-weight:700;}
+#legend-panel hr{margin:.6rem 0;border:0;border-top:1px solid var(--rule);}
+.legend-foot{margin-top:.6rem;padding-top:.5rem;border-top:1px solid var(--rule);color:var(--muted);font-size:.66rem;}
+
+/* ── Phone ── */
+@media (max-width:760px){
+  html,body{height:auto;}
+  body{display:block;overflow:visible;overflow-x:hidden;min-height:100vh;}
+  #banner{padding:.5rem 16px;}
+  #topbar{padding:.5rem 16px;min-height:48px;}
+  #topbar h1{white-space:normal;font-size:.8rem;line-height:1.35;}
+  #main{display:block;}
+  #ms-panel{width:100%!important;height:48vh;}
+  #divider{display:none;}
+  #tx-panel{display:block;}
+  #tx-header{padding:.5rem 16px;}
+  #search-bar{padding:.4rem 16px;}
+  #tx-scroll{overflow:visible;padding:1.1rem 16px;}
+  #tx-scroll p{text-align:left;font-size:1rem;}
+  #sheet{display:flex!important;height:auto!important;min-height:0;}
+  #sheet-resizer{display:none;}
+  #sheet-head{padding:.4rem 16px;}
+  #sheet-scroll{overflow-x:auto;overflow-y:visible;flex:none;}
+  table.grid{min-width:760px;}
+  #navbar{position:sticky;bottom:0;z-index:150;padding:0 8px;gap:4px;justify-content:space-between;}
+  .nav-btn{min-width:0;padding:.35rem .55rem;font-size:.72rem;letter-spacing:0;}
+  .icon-btn{padding:.3rem .4rem;font-size:.64rem;letter-spacing:0;}
+  #page-jump label{display:none;}
+  #page-jump{flex:1 1 0;min-width:0;}
+  #page-select{width:100%;min-width:0;font-size:.7rem;}
+  #sheet-toggle,#sheet-close,#sheet-reopen{display:none!important;}
+  #footer{padding:.5rem 16px;}
+  #legend-panel{left:0;right:0;width:auto;bottom:var(--navh);border-radius:0;border-left:0;border-right:0;max-height:60vh;padding:1rem 16px;}
+  #sel-tools{left:16px!important;right:16px;top:auto!important;bottom:calc(var(--navh) + 8px);max-width:none;}
+}
+@media (prefers-reduced-motion: reduce){
+  .demo-edit.pulse,table.grid tr.new td{animation:none;}
+  #tx-scroll{scroll-behavior:auto;}
+}
+.note-input{width:100%;font:inherit;color:var(--ink);background:transparent;border:1px dashed var(--rule);border-radius:2px;padding:.15rem .3rem;}
+.note-input:focus{outline:2px solid var(--accent);outline-offset:0;background:var(--paper);border-style:solid;}
+</style>
+</head>
+<body>
+
+<div id="banner">
+  <span class="b-text"><strong>Demonstration copy.</strong> The full tool pairs all 58 pages of Perkins's 1843–44 journal-letter with a diplomatic transcription, searchable and flagged by theme. This demo has 13 sample pages; your edits stay on this page and reset when you reload.</span>
+  <a class="b-back" href="../../manuscripts.html#perkins-journal-letter-transcription-and-reading-viewer">← Back to the project</a>
+</div>
+
+<div id="topbar">
+  <h1><em>Journal Letter, Wascopam, Dec. 1843 – Mar. 1844</em> &nbsp;&middot;&nbsp; H.K.W. Perkins to Rev. Charles Pitman &nbsp;&middot;&nbsp; Diplomatic Transcription</h1>
+  <div id="page-indicator">Ms. pg <span id="cur-page">1</span></div>
+</div>
+
+<div id="main">
+  <div id="ms-panel">
+    <div id="canvas-wrapper">
+      <div id="spread">
+        <img id="ms-img" alt="" draggable="false">
+        <div id="gutter-line"></div>
+        <div id="half-marker"></div>
+      </div>
+      <div id="destroyed-notice">
+        <h2>6th Sheet &mdash; Destroyed Before Sending</h2>
+        <p>Perkins noted in his closing (ms. pg. 57): <em>&ldquo;The 6th Sheet I have thrown into the fire.&rdquo;</em> These four pages (ms. pgs. 21&ndash;24) cannot be recovered. They likely continued the ethnographic description of burial customs ending the 5th Sheet and resuming on the 7th.</p>
+      </div>
+    </div>
+    <div id="zoom-controls">
+      <button class="zoom-btn" id="z-in" title="Zoom in (+)" aria-label="Zoom in">+</button>
+      <button class="zoom-btn" id="z-out" title="Zoom out (−)" aria-label="Zoom out">&minus;</button>
+      <button class="zoom-btn" id="z-reset" title="Reset view (0)" aria-label="Reset view" style="font-size:.7rem;">&#8635;</button>
+    </div>
+    <div id="ms-label"></div>
+  </div>
+
+  <div id="divider" role="separator" aria-orientation="vertical" aria-label="Resize panels (double-click to reset)"></div>
+
+  <div id="tx-panel">
+    <div id="tx-header">
+      <span id="tx-page-label"></span>
+      <span id="tx-image-ref"></span>
+    </div>
+    <div id="search-bar">
+      <input type="text" id="search-input" placeholder="Search transcription&hellip;" aria-label="Search the sample transcription">
+      <span id="search-count" aria-live="polite"></span>
+      <button class="search-nav-btn" id="search-prev" aria-label="Previous match">&#8593;</button>
+      <button class="search-nav-btn" id="search-next" aria-label="Next match">&#8595;</button>
+      <button id="search-close" aria-label="Close search">&times;</button>
+    </div>
+    <div id="tx-scroll">
+      <div id="tx-content"></div>
+      <div id="tx-citation"></div>
+    </div>
+  </div>
+</div>
+
+<div id="sheet">
+  <div id="sheet-resizer" role="separator" aria-orientation="horizontal" aria-label="Drag to resize the review sheet" title="Drag to resize · double-click to reset"></div>
+  <div id="sheet-head">
+    <h2>Review sheet (sample &mdash; resets on reload)</h2>
+    <button class="sm-btn" id="sheet-clear">Clear all</button>
+    <button class="sm-btn" id="sheet-close" aria-label="Hide review sheet">Hide</button>
+  </div>
+  <div id="sheet-scroll"><table class="grid" id="grid" aria-label="Review sheet"></table></div>
+</div>
+<button id="sheet-reopen" type="button">&#9650; Show review sheet (0)</button>
+
+<div id="navbar">
+  <button class="nav-btn" id="btn-prev">&#8592; Prev</button>
+  <div id="page-jump">
+    <label for="page-select">Go to</label>
+    <select id="page-select"></select>
+  </div>
+  <button class="icon-btn" id="search-toggle" title="Search (/)">Search</button>
+  <button class="icon-btn" id="legend-toggle" aria-expanded="false">Legend</button>
+  <button class="icon-btn" id="sheet-toggle" aria-expanded="true">Sheet (0)</button>
+  <button class="nav-btn" id="btn-next">Next &#8594;</button>
+</div>
+
+<div id="footer">Demo v1 &middot; 25 October 2026 &middot; Manuscript images courtesy of University of Puget Sound via JSTOR &middot; Machine transcription reviewed by Sarah Hurlburt and Grace Baguma</div>
+
+<div id="sel-tools" role="toolbar" aria-label="Review edit tools">
+  <div class="view on" id="v-main" style="gap:.3rem;flex-wrap:wrap;">
+    <button class="st-btn" id="st-uncertain">Mark uncertain</button>
+    <button class="st-btn" id="st-suggest">Suggest reading</button>
+    <button class="st-btn" id="st-flag">Flag theme</button>
+  </div>
+  <div class="view" id="v-suggest" style="gap:.3rem;flex-wrap:wrap;align-items:center;">
+    <input type="text" id="sugg-input" aria-label="Proposed reading" placeholder="Proposed reading">
+    <button class="st-btn primary" id="sugg-apply">Apply</button>
+    <button class="st-btn" data-cancel>Cancel</button>
+  </div>
+  <div class="view" id="v-flag" style="gap:.3rem;flex-wrap:wrap;align-items:center;">
+    <select id="flag-theme" aria-label="Theme"></select>
+    <input type="text" id="flag-note" aria-label="Note (optional)" placeholder="Note (optional)">
+    <button class="st-btn primary" id="flag-apply">Apply</button>
+    <button class="st-btn" data-cancel>Cancel</button>
+  </div>
+  <div class="view" id="v-hint"><span class="hint">Select words within one paragraph.</span></div>
+</div>
+
+<div id="legend-panel">
+  <h3>Editorial conventions</h3>
+  <div class="legend-item"><span class="legend-swatch ix"></span><strong>Index</strong> &mdash; key names &amp; themes</div>
+  <div class="legend-item fl flag-language"><span class="legend-swatch fl flag-language"></span><span class="fl-name">LANGUAGE</span></div>
+  <div class="legend-item fl flag-kinship"><span class="legend-swatch fl flag-kinship"></span><span class="fl-name">KINSHIP</span></div>
+  <div class="legend-item fl flag-food_security"><span class="legend-swatch fl flag-food_security"></span><span class="fl-name">FOOD-SECURITY</span></div>
+  <div class="legend-item fl flag-labor"><span class="legend-swatch fl flag-labor"></span><span class="fl-name">LABOR</span></div>
+  <div class="legend-item fl flag-agriculture"><span class="legend-swatch fl flag-agriculture"></span><span class="fl-name">AGRICULTURE</span></div>
+  <div class="legend-item fl flag-climate"><span class="legend-swatch fl flag-climate"></span><span class="fl-name">CLIMATE</span></div>
+  <div class="legend-item fl flag-walla"><span class="legend-swatch fl flag-walla"></span><span class="fl-name">WALLA</span></div>
+  <div class="legend-item fl flag-settler_perspective"><span class="legend-swatch fl flag-settler_perspective"></span><span class="fl-name">SETTLER-PERSPECTIVE</span></div>
+  <div class="legend-item fl flag-note"><span class="legend-swatch fl flag-note"></span><span class="fl-name">NOTE</span></div>
+  <hr>
+  <div class="legend-item"><span class="uncertain">word</span>&nbsp;&mdash; uncertain reading</div>
+  <div class="legend-item"><u style="text-underline-offset:2px;">word</u>&nbsp;&mdash; Perkins&rsquo;s underline</div>
+  <div class="legend-item"><span class="lc-ref" style="vertical-align:baseline;">[LC-N]</span>&nbsp;&mdash; linked correction note</div>
+  <div class="legend-item"><span class="illegible">[illegible]</span>&nbsp;&mdash; unreadable passage</div>
+  <div class="legend-item"><span class="demo-edit" style="padding:0 .2em;">word</span>&nbsp;&mdash; your demo edit</div>
+  <div class="legend-foot">&#8592; &#8594; arrow keys navigate &nbsp;&bull;&nbsp; / opens search &nbsp;&bull;&nbsp; + &minus; 0 zoom &nbsp;&bull;&nbsp; double-click divider resets split</div>
+</div>
+
+<script>
+// ── Sample page data (13 of 58 pages) ──
+const PAGES = [{"msPage": 1, "destroyed": false, "grouped": false, "pdfPage": 2, "half": "right", "html": "<div class=\"index-block\"><span class=\"index-label\">Index<\/span> Wascopam | Pitman, Charles | Perkins, H.K.W. | 1843 emigration<\/div>\n<p>1 Sheet<\/p>\n<p><strong>Wascopam<\/strong>, Dec. 4, 1843<\/p>\n<p>Dear Bro. <strong>Pitman<\/strong>,<\/p>\n<p>In my last communication to you, which I sent by the Brig Palace, some two months since, I informed you that we were thronged with emigrants, which were passing us by hundreds, & that in the consequent derangement of our regular missionary business, I should be under the necessity of laying aside my pen for a time. I would now inform you that the noise, bustle, & hurry of emigrating companies has quietly subsided, & I am once more the retired occupant of a study, & have resumed my business of translating. The two months which we have given up principally to attentions to our countrymen, we trust have not been lost to the cause of Christ, or altogether unappreciated by them even. Perhaps a few words concerning these emigrating companies may not be <span class=\"uncertain\">wholly<\/span> uninteresting to you. Their perseverance & successful struggles amid so many difficulties as their journey to this country presented to them, certainly deserve special notice by their countrymen, & cannot be a bad example to hold up before those who are hesitating on account of hardships & trials about engaging in the missionary work. After knowing that some of these poor people have passed through to obtain the paltry advantages<\/p>"}, {"msPage": 2, "destroyed": false, "grouped": false, "pdfPage": 3, "half": "left", "html": "<div class=\"index-block\"><span class=\"index-label\">Index<\/span> Missouri | Howell family | M.E. Church | Western Methodism<\/div>\n<p>which a settlement in this country offers, we may forever be ashamed of our little sacrifices and sufferings.<\/p>\n<p>Quite a number have passed us of the old substantial farmers of <strong>Missouri<\/strong> —  men of property & influence — some few of them the members of the M.E. Church, & for years the friends & supporters of Methodism in their respective neighborhoods. From some of these we were happy in gaining a more particular acquaintance with some of our itinerant brethren in the \"far west\" of whom we had only heard from afar to know the names. Some had been at such a camp-meeting well known in the annals of Western Methodism, & others had heard such & such a preacher who in their estimation (which shows that their words had found way to their hearts) were the smartest men in all the world — or a third had mingled in such & such remarkable scenes where God had made unusual displays of his saving power. How the minds of those whose hearts God has touched will favor upon some such scenes & places, & the various persons who have figured in them, showing us conclusively that the Spirit of God makes a deep & lasting impression, whether men will yield to it or not.<\/p>\n<p>I was particularly interested in a large family by the name of <strong>Howell<\/strong>. The head & father, a bald-headed, sedate looking old man & his female contemporary with their numerous sons, daughters & sons-in-law<\/p>"}, {"msPage": 3, "destroyed": false, "grouped": false, "pdfPage": 3, "half": "right", "html": "<div class=\"index-block\"><span class=\"index-label\">Index<\/span> Howell family | Columbia River | London | Buffalo | drowning<\/div>\n<p>...presented a sight so rare in this country, that I almost fancied myself transported to my native shores, among my old Atlantic friends. Who could have made me believe 5 years ago that in these deep Indian solitudes I should ever see such sights, or at least in such a short space of time. • • • Among those who have passed us, one poor old man I shall never forget. He informed me that he was originally from <strong>London<\/strong> (Eng.) but more recently from <strong>Buffalo<\/strong>, N.Y. He set out for this country with an only son, \"a fine lad\" as he termed him — \"of about thirty.\" They had embarked all their little property in making a fit-out for this journey. They had proceeded as far as <strong>Fort Walla Walla<\/strong>, some 120 miles above this, when becoming tired of land travel they abandoned their wagon & stowed their remaining effects in a small log-canoe obtained of the natives, & commenced descending the <strong>Columbia<\/strong>. They had proceeded some 70 miles, when passing through one of those narrow rocky channels, with which the <strong>Columbia<\/strong> in its low stage abounds, they ran upon a rock & instantly capsized. The father clung to the canoe & was taken to the shore, but the son, trusting to his strength & expertness in swimming, made directly for the land but perished before reaching it. A day or two after, the old man reached our Station almost bowed down by the weight of grief & mourning<\/p>"}, {"msPage": 4, "destroyed": false, "grouped": false, "pdfPage": 2, "half": "left", "html": "<div class=\"index-block\"><span class=\"index-label\">Index<\/span> Applegate family | Klamath | Columbia River | drowning<\/div>\n<p>...This the only source of hope & comfort seemed cut off. To his \"dear son,\" as he passionately called him, he had looked for every thing — here he had trusted for support in his declining years. With him he had looked to find a quiet home in a land as yet of almost unbroken wildness. Poor man! He is at length left like a lone tree on the desert plain to bear alone the sweeping blast, & noticed only by the stranger traveller. How soothless in the day of trial the man who feels alone on earthly hopes! He finds them swept away & nothing to avert the gathering clouds of dark despair.<\/p>\n<p>Very similar was the case of two other families, the Messrs. <strong>Applegates<\/strong>, who were called in similar circumstances to part with each a son. They were bringing a large stock of cattle to this country & in company with a number of other families were intending to form a colony upon the lower waters of the <strong>Clamat<\/strong>. At <strong>Wallawalla<\/strong>, meeting with an opportunity of exchanging their cattle for others on the <strong>Willamette<\/strong>, they formed a company, constructed a number of good-sized skiffs, & taking the contents of their wagons on board, with their families, were proceeding buoyantly down the river, when passing through a short rapid, one of their boats upset & two blooming boys & an old man, a member of one of the families of <strong>Applegates<\/strong>, were swept away by the current to be seen no more • • •<\/p>"}, {"msPage": 13, "destroyed": false, "grouped": false, "pdfPage": 8, "half": "right", "html": "<div class=\"index-block\"><span class=\"index-label\">Index<\/span> child-naming ceremony | cahshaho | Wascopam | Dec. 10, 1843<\/div>\n<p>4th Sheet<\/p>\n<p>Sabbath, Dec. 10, 1843<\/p>\n<p>Met the natives about 11 AM & read & explained to them the visit of the angel to <strong>Mary<\/strong> & her subsequent history & the birth of our Saviour, including also the naming of the child Jesus. About 150 were present, who listened with considerable interest.<\/p>\n<p>The naming of a child among the natives here is attended with a great deal of ceremony. The time when this is attended to varies according to the circumstances of the parents, but it is generally, I believe, during the first year of the child's life. A grand feast is always made, or was rather formerly, & a great deal of property given away. The relatives on the father's & mother's side are generally collected, & supper being served up, before it is partaken of, the ceremony takes place. An old man is always selected for a herald & crier, & when all things are ready, the mother of the child to be named presents to him a fathom of \"cahshaho\" (Indian money) which is a sign for him to arise.<\/p>\n<p>The old man therefore rises & publishes with a loud voice, \"I have received this present.\" He then signifies the name of the child, & having received it, he again cries, \"Hear ye earth, waters, & fire, ye heavens, sun moon & stars, ye clouds & trees, & roots, & all creatures in air, earth, & sea. (naming over the things of the animate & inanimate creation in regular order)<\/p>"}, {"msPage": 14, "destroyed": false, "grouped": false, "pdfPage": 9, "half": "left", "html": "<div class=\"index-block\"><span class=\"index-label\">Index<\/span> naming ceremony | ahshahs | elk skin | moccasins | property distribution | kinship<\/div>\n<p>...and all ye people, old men & old women, young men & maidens & ye children, this name:\" He then goes on to say from whom the name is derived, from such a relation, who was such a man or woman, & who did so & so, & on pronouncing the name, the whole company repeat it simultaneously. Sometimes the child takes the name of a living relation, friend, or acquaintance, but should that friend or relation die, the name ceases, & he who took the name must find another, as it is not customary to call the name of a person dead for a long time after his decease. That is.<\/p>\n<p>After the naming is over, presents are distributed according to the circumstances of the parents to all the company present, giving to each according to their dignity. Generally 3 or 4 large dressed elk skins are cut into small pieces, each large enough to sole a pair of moccasins, & these being all distributed, a quantity of \"ahshahs\" (i.e. Indian money) is then brought forward, & strings of this, of perhaps a foot in length each, are also distributed. Besides these presents, any one of the company has a right to ask for such an article as he is needy of, & at such times custom demands that he receive it, even to the last shirt the father has, or the only knife or gun. After every thing else is given away, the old ladies call for the milk mats, which the mother distributes among them, & so the party breaks up.<\/p>"}, {"msPage": 15, "destroyed": false, "grouped": false, "pdfPage": 9, "half": "right", "html": "<div class=\"index-block\"><span class=\"index-label\">Index<\/span> Pamia wanisht-pamia tskuat-at | Pamia nisht pamia tskuat-at | ear piercing | female jugglers | ceremony | Wâlawala language<\/div>\n<p>This feast is called in <strong>Wâlawala<\/strong> <em>Pamia wanisht-pamia tskuat-at<\/em> or \"the feast of the naming.\"<\/p>\n<p>Closely connected with this ceremony, & which formerly could not be omitted without great disgrace to the family, is that of boring the ears & nose of the infant. This also is generally attended to during the first year of the child's life. This business is always performed during the morning twilight. The ceremony is generally performed by some one of their aged female jugglers. The child, as usual, is bound to its little board, or cradle, & on this occasion the old woman receives it & places it upon her knees. She then mutters over it in a low, half-whispered voice, a sort of prayer or incantation, & then taking a needle (formerly a sharp bone) she perforates successively each of the ears, & nose. If the ears are hard & to be perforated, or if the child cries, or if much blood follows the operation, it is a bad sign, & the child will be short-lived, & vice versa. This feast is called <em>Pamia nisht pamia tskuat-at<\/em> — \"the feast of the boring.\"<\/p>\n<p>I have here adverted to these ceremonies of the natives, as my subject seemed to call them up, & if presented may be interesting to some one, & all such customs which they have formerly had seem destined to be visited in oblivion in a few years, as the manners & customs of the whites are gradually introduced. Even now, these ceremonies are fast being laid aside.<\/p>\n<div class=\"flag flag-note\"><span class=\"flag-label\">NOTE<\/span>Perkins observes that these ceremonies are \"fast being laid aside\" as white customs are introduced — an explicit acknowledgment of missionary-driven cultural displacement, stated matter-of-factly as an expected outcome.<\/div>"}, {"msPage": 16, "destroyed": false, "grouped": false, "pdfPage": 8, "half": "left", "html": "<div class=\"index-block\"><span class=\"index-label\">Index<\/span> Sabbath 17 | Sabbath 23 | Nez Perce | translation | Nicodemus | Samaritan woman<\/div>\n<p>At 12 o'clock we had our usual English service. Preached from 1 Thes. V. 6. Immediately at the close of the English services, we met the natives & had for subjects good old <strong>Simeon<\/strong>, & <span class=\"uncertain\">Channel's<\/span> daughter. In the evening we had a prayer-meeting. As this is the standing order of our Sabbath exercises, it will not be necessary for me to be particular in naming them hereafter.<\/p>\n<p><strong>Sabbath 17<\/strong><\/p>\n<p>Translated this week 76 verses. Ill health has prevented me from applying myself as closely to study as heretofore. Religious exercises today as usual. Gave the natives that portion of the gospel history which includes the visit of the wise men to the Saviour, the flight into Egypt, slaying of the infants, & <strong>Joseph<\/strong>'s settlement at <strong>Nazareth<\/strong>. In the afternoon added some account of the ministry of <strong>John<\/strong>, his preaching & instructions to the people.<\/p>\n<p><strong>Sat. 23<\/strong><\/p>\n<p>Much company this week — a fresh arrival of <strong>Kaius<\/strong>. Have got through with 100 verses however of very interesting matter, viz. the conversation of Christ with <strong>Nicodemus<\/strong>, & the <strong>Samaritan woman<\/strong>. Some of the principal men of the <strong>Kaius<\/strong> have taken up a pretty permanent abode in my study. So eager have they been to learn, that they have scarcely left it except for meals & sleep during the week. They sit around my table & seem to drink in every sentence, with such eagerness as contributes very much to my encouragement.<\/p>\n<div class=\"flag flag-language\"><span class=\"flag-label\">LANGUAGE<\/span>Translation pace: 76 verses (week of Dec. 17), 100 verses (week of Dec. 23). Content: gospel harmonization of Nativity, Flight to Egypt, Massacre of Innocents, John's ministry, Nicodemus, Samaritan woman. Native principal men as daily students in Perkins's study.<\/div>\n<div class=\"flag flag-kinship\"><span class=\"flag-label\">KINSHIP<\/span>Naises/Nez Percé principal men occupying Perkins's study continuously through the week; relationship between missionary and Indigenous leaders as intimate daily learning encounter.<\/div>"}, {"msPage": 17, "destroyed": false, "grouped": false, "pdfPage": 10, "half": "right", "html": "<div class=\"index-block\"><span class=\"index-label\">Index<\/span> Sabbath 24 | infant funerals | Wâlawala | Naises | burial | Dec. 24, 1843<\/div>\n<p>[5th Sheet?] <span class=\"lc-ref\">[LC-1]<\/span><\/p>\n<p><strong>Sabbath 24th.<\/strong> Had an interesting season with the people today. Congregation very large & attentive. Their interest seems to be very much increasing in the truths of the gospel. Had for subject the baptism & temptation of Christ, & the visit of the priests & Levites to <strong>John<\/strong>, inquiring after his character & the reasons for his ministry; & <strong>John<\/strong>'s subsequent testimony of Christ as the Lamb of God, which taketh away the sin of the world. Have attended two funerals within a few days — one of an infant belonging to a <strong>Wâlawala<\/strong> & the other of an infant belonging to the <strong>Kaius<\/strong> tribe. I always feel a peculiar satisfaction in committing these little ones to their mother earth. I know their spirits are up on high & forever beyond the contamination of heathenism. One of them was brought by the parents for interment some 25 miles. I felt to sympathize with them, because they were a young couple & this was their only child, the mother seemed<span class=\"uncertain\">scarce<\/span> out from her tears, & one appeared as though she deeply felt this separation from the first, & only child of her bosom, & I felt peculiarly happy in soothing their troubled minds with the precious truths of that gospel, which reveals to us our separated babes as always beholding the face of our heavenly Father. It seems a wise arrangement of Divine providence that so great a proportion of heathen die while in a state of infancy<\/p>\n<div class=\"flag flag-note\"><span class=\"flag-label\">NOTE<\/span>\"their spirits are up on high & forever beyond the contamination of heathenism\" — Perkins's theological assessment of Indigenous infant death, reflecting the missionary view that dying before encountering \"heathenism\" constitutes a kind of grace.<\/div>"}, {"msPage": 18, "destroyed": false, "grouped": false, "pdfPage": 11, "half": "left", "html": "<div class=\"index-block\"><span class=\"index-label\">Index<\/span> burial | Chinook | Columbia River | Natasha Hutkutlama | burial island | cedar house<\/div>\n<p>...they should have a great many funerals to attend if we could furnish the means for interment. Our way of burying requires a coffin, which we are seldom able to furnish for want of boards, hence the natives, as a general thing, continue their own way of interring, which on the whole I consider very good. There are two ways of burying among the natives here, each tribe having its own way. The <strong>Chinooks<\/strong> bury their dead by placing them in low flat-roofed houses, built expressly generally for this purpose, on some island. There are three islands in the <strong>Columbia<\/strong> in this vicinity, which are expressly devoted to this purpose. These islands are considered sacred, & are never visited by any except the <em>Natasha Hutkutlama<\/em> or those whose express business it is to bury the dead. The most noted of these islands is situated in the lower part of the Dalls, or great rapid about three miles distant from us. It has been several years since I visited it, as it is hard of access, & as I said before, the common people can hardly be induced to approach it. There were then some 50 or 60 of these houses standing, some of them in pretty good repair. They were all constructed in the same manner, & generally about 10 feet square, & 6 or 7 feet high, the walls of split cedar, & the roof of bark of the same. The one which I visited & which<\/p>"}, {"msPage": 19, "destroyed": false, "grouped": false, "pdfPage": 11, "half": "right", "html": "<div class=\"index-block\"><span class=\"index-label\">Index<\/span> simlas | burial house interior | voyageur | chief | burial goods | shells | beads<\/div>\n<p>...we may take as a sample, was arranged inside the same as a dwelling. On one side was what the natives call the \"<em>simlas<\/em>\" or sleeping place, & on the other a vacant space. The \"<em>simlas<\/em>\" is a low scaffold of cedar boards, supported by small poles, laid upon short upright posts, firmly set in the ground. The \"<em>simlas<\/em>\" contains a large number of bodies piled upon each other, much the same as corded wood, each body being snugly wrapped in dressed elk skins, those which were more recently dead lying uppermost. Beneath the \"<em>simlas<\/em>\" & around the walls of the apartment, were promiscuous heaps of mouldering bones, in different states of preservation, arms, legs, & skulls of numerous individuals, all commingle & all alike unconscious at last in whose society found. In one corner I noticed what might once have been some voyageur's provision chest, & which contained, as I found upon inquiring, the bones of a noted chief. A splendid mausoleum could not hold them more snugly.  Had I opened this box or almost any one of these bundles of crumbling bones, I should have found an abundance of Indian treasure, such as beads, shells, coppers & half coins, knives, spoons & all kinds of trinkets, the product of many days of anxious thought & care to the once haughty & fortunate possessor, but now, alas, forever useless.<\/p>"}, {"msPage": 20, "destroyed": false, "grouped": false, "pdfPage": 10, "half": "left", "html": "<div class=\"index-block\"><span class=\"index-label\">Index<\/span> burial | Wâlawala | underground vault | property sacrifice | bone cleaning | drifting sand<\/div>\n<p>Great attention is paid to the dead by the near relatives while the relations live, but time at length veils their memory in oblivion, & they sink one after another in the crumbling mass. The higher classes of the natives at death are arrayed in their best dress, profusely ornamented, & wrapped first in new blankets & then in elk skins. After the lapse of one year, the corpse is taken out, & the bones cleansed, & if the relatives are able to afford it, wrapped in new blankets & fresh skins. A certain class of old men perform this business, & for that they generally receive large pay. Formerly, the natives had a practice of sacrificing a large amount of property, such as guns, bows & arrows, kettles, axes, & whatever was valuable to the owner while living, & these were all wrapped together with the body; but this is now very much laid aside.<\/p>\n<p>The <strong>Wâlawala<\/strong> has a different way of disposing of their dead. Their burying places are large underground vaults, generally at the foot of a rocky hill, where they may easily be covered with stones. These vaults are very difficult of access, requiring much labor to remove the stones by which they are concealed, & which would render a stranger entirely ignorant of their existence. Sometimes they become lost to the family itself, especially if they are in the vicinity of drifting sands. A burying place belonging to a village on the <strong>Columbia<\/strong>, about 3 miles above this, has been completely lost in this way. They point to the spot where lie the bones of their forefathers, but nothing is seen but enormous heaps of these shifting sands, beyond the power of removal.<\/p>"}, {"msPage": "21–24", "destroyed": true, "grouped": true, "pdfPage": null, "half": null, "html": "<p><em>Perkins notes in his closing (ms pg 57): \"The 6th Sheet I have thrown into the fire.\" The content of this sheet is not recoverable. Given that the 5th Sheet ends with Wâlawala burial customs and the 7th Sheet begins with Wâlawala vault interiors, the destroyed sheet likely continued ethnographic description of burial, property, and/or funeral practice.<\/em><\/p>"}];
+const ORIGINAL = JSON.parse(JSON.stringify(PAGES));   // pristine copy for "Clear all"
+
+const THEMES = [
+  ['LANGUAGE','language'],['KINSHIP','kinship'],['FOOD-SECURITY','food_security'],['LABOR','labor'],
+  ['AGRICULTURE','agriculture'],['CLIMATE','climate'],['WALLA','walla'],
+  ['SETTLER-PERSPECTIVE','settler_perspective'],['NOTE','note']
+];
+const $ = id => document.getElementById(id);
+const content = $('tx-content');
+const mqPhone = window.matchMedia('(max-width:760px)');
+// Drag the bar above the review sheet to change its height; double-click resets it.
+(function setupSheetResizer() {
+  const bar = document.getElementById('sheet-resizer'), sheet = document.getElementById('sheet');
+  let startY = 0, startH = 0, dragging = false;
+  bar.addEventListener('pointerdown', e => {
+    dragging = true; startY = e.clientY; startH = sheet.getBoundingClientRect().height;
+    bar.setPointerCapture(e.pointerId); bar.classList.add('dragging'); e.preventDefault();
+  });
+  bar.addEventListener('pointermove', e => {
+    if (!dragging) return;
+    const h = Math.max(90, Math.min(window.innerHeight * 0.75, startH + (startY - e.clientY)));
+    sheet.style.height = h + 'px';
+  });
+  const end = () => { if (!dragging) return; dragging = false; bar.classList.remove('dragging'); window.dispatchEvent(new Event('resize')); };
+  bar.addEventListener('pointerup', end); bar.addEventListener('pointercancel', end);
+  bar.addEventListener('dblclick', () => { sheet.style.height = ''; window.dispatchEvent(new Event('resize')); });
+})();
+
+// ── State ──
+let currentIndex = 0;
+let zoom = 1, panX = 0, panY = 0, touched = false;
+let spreadW = 0, spreadH = 0;
+let searchMatches = [], searchCurrent = -1;
+let edits = [], editSeq = 0;
+const ASPECT = 2340 / 1461;
+const texts = [];
+
+function computeText(html) {
+  const d = document.createElement('div');
+  d.innerHTML = html;
+  return d.textContent.toLowerCase();
+}
+function recomputeText(i) { texts[i] = computeText(PAGES[i].html); }
+PAGES.forEach((_, i) => recomputeText(i));
+
+function imgName(pdfPage) { return `spread-${String(pdfPage).padStart(2, '0')}.jpg`; }
+
+// ── Spread layout / zoom / pan ──
+function layoutSpread() {
+  const cw = $('canvas-wrapper');
+  const W = cw.clientWidth, H = cw.clientHeight;
+  if (!W || !H) return;
+  if (W < 600) spreadW = Math.min(2 * (W - 8), (H - 8) * ASPECT);   // fit the active HALF
+  else spreadW = Math.min(W - 4, (H - 8) * ASPECT);                 // fit the whole opening
+  spreadH = spreadW / ASPECT;
+  const s = $('spread');
+  s.style.width = spreadW + 'px';
+  s.style.height = spreadH + 'px';
+}
+function activeHalfPan() {
+  const pd = PAGES[currentIndex];
+  // Whole opening fits (desktop): show it centred, the marker points to the current page.
+  if (spreadW <= $('canvas-wrapper').clientWidth) return 0;
+  return pd.half === 'left' ? spreadW / 4 : pd.half === 'right' ? -spreadW / 4 : 0;
+}
+function resetView() {
+  zoom = 1; panX = activeHalfPan(); panY = 0; touched = false;
+  applyTransform();
+}
+function adjustZoom(d) { zoom = Math.max(0.5, Math.min(5, zoom + d)); touched = true; applyTransform(); }
+function applyTransform() {
+  $('spread').style.transform = `translate(-50%,-50%) translate(${panX}px,${panY}px) scale(${zoom})`;
+}
+
+function setupPan() {
+  const cw = $('canvas-wrapper');
+  let panning = false, sx = 0, sy = 0, ox = 0, oy = 0, lastDist = 0;
+  cw.addEventListener('mousedown', e => {
+    if (PAGES[currentIndex].destroyed) return;
+    panning = true; sx = e.clientX; sy = e.clientY; ox = panX; oy = panY;
+    cw.classList.add('dragging'); e.preventDefault();
+  });
+  window.addEventListener('mousemove', e => {
+    if (!panning) return;
+    panX = ox + (e.clientX - sx); panY = oy + (e.clientY - sy); touched = true; applyTransform();
+  });
+  window.addEventListener('mouseup', () => { if (panning) { panning = false; cw.classList.remove('dragging'); } });
+  cw.addEventListener('wheel', e => {
+    if (PAGES[currentIndex].destroyed) return;
+    e.preventDefault();
+    adjustZoom(e.deltaY > 0 ? -0.15 : 0.15);
+  }, {passive: false});
+  cw.addEventListener('dblclick', () => resetView());
+  cw.addEventListener('touchstart', e => {
+    if (e.touches.length === 2) {
+      lastDist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
+      panning = false;
+    } else if (e.touches.length === 1) {
+      panning = true; sx = e.touches[0].clientX; sy = e.touches[0].clientY; ox = panX; oy = panY;
+    }
+  }, {passive: true});
+  cw.addEventListener('touchmove', e => {
+    if (e.touches.length === 2) {
+      const dist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
+      if (lastDist) zoom = Math.max(0.5, Math.min(5, zoom * dist / lastDist));
+      lastDist = dist; touched = true; applyTransform(); e.preventDefault();
+    } else if (panning && e.touches.length === 1) {
+      panX = ox + (e.touches[0].clientX - sx); panY = oy + (e.touches[0].clientY - sy);
+      touched = true; applyTransform(); e.preventDefault();
+    }
+  }, {passive: false});
+  cw.addEventListener('touchend', () => { panning = false; lastDist = 0; });
+  $('z-in').onclick = () => adjustZoom(0.25);
+  $('z-out').onclick = () => adjustZoom(-0.25);
+  $('z-reset').onclick = () => resetView();
+  new ResizeObserver(() => {
+    layoutSpread();
+    if (!touched) { panX = activeHalfPan(); panY = 0; }
+    applyTransform();
+  }).observe(cw);
+}
+
+function setupDivider() {
+  const divider = $('divider'), msPanel = $('ms-panel'), main = $('main');
+  let resizing = false;
+  divider.addEventListener('mousedown', e => { resizing = true; divider.classList.add('dragging'); e.preventDefault(); });
+  window.addEventListener('mousemove', e => {
+    if (!resizing) return;
+    const r = main.getBoundingClientRect();
+    msPanel.style.width = Math.max(15, Math.min(85, (e.clientX - r.left) / r.width * 100)) + '%';
+  });
+  window.addEventListener('mouseup', () => { if (resizing) { resizing = false; divider.classList.remove('dragging'); } });
+  divider.addEventListener('dblclick', () => { msPanel.style.width = '50%'; });
+}
+
+// ── Manuscript image ──
+function renderManuscript() {
+  const pd = PAGES[currentIndex];
+  const spread = $('spread'), img = $('ms-img'), label = $('ms-label');
+  const notice = $('destroyed-notice'), zc = $('zoom-controls');
+  if (pd.destroyed || !pd.pdfPage) {
+    spread.style.display = 'none'; zc.style.display = 'none'; label.style.display = 'none';
+    notice.style.display = 'block'; return;
+  }
+  notice.style.display = 'none';
+  zc.style.display = 'flex';
+  layoutSpread();
+  const src = imgName(pd.pdfPage);
+  if (!img.src.endsWith(src)) img.src = src;
+  img.alt = 'Manuscript opening, PDF page ' + pd.pdfPage;
+  $('half-marker').textContent = pd.half === 'left' ? '◀ current page' : 'current page ▶';
+  $('half-marker').style.left = pd.half === 'left' ? '25%' : '75%';
+  spread.style.display = 'block';
+  label.textContent = 'PDF p.' + pd.pdfPage + ' · ' + pd.half + ' half · ms. pg. ' + pd.msPage;
+  label.style.display = 'block';
+  resetView();
+}
+
+// ── Citation ──
+function renderCitation(pd) {
+  const c = $('tx-citation');
+  const img = pd.destroyed ? 'No image: sheet destroyed by the author.'
+    : 'Manuscript image: H.K.W. Perkins, journal-letter to Rev. Charles Pitman, Wascopam, December 1843 – March 1844, [PDF p. ' + pd.pdfPage + ', ' + pd.half + ' half].';
+  c.innerHTML = img + ' University of Puget Sound, Collins Memorial Library; digitized in JSTOR Community Collections, ' +
+    '<a href="https://www.jstor.org/stable/community.36606243">jstor.org/stable/community.36606243</a>. ' +
+    'Machine transcription reviewed by Sarah Hurlburt and Grace Baguma.';
+}
+
+// ── Search ──
+function openSearch() { $('search-bar').classList.add('visible'); $('search-input').focus(); }
+function closeSearch() {
+  $('search-bar').classList.remove('visible');
+  $('search-input').value = '';
+  searchMatches = []; searchCurrent = -1;
+  clearHighlights();
+  $('search-count').textContent = '';
+}
+function computeMatches(q) {
+  const out = [];
+  texts.forEach((t, pi) => {
+    let idx = 0;
+    while ((idx = t.indexOf(q, idx)) !== -1) { out.push({pageIndex: pi}); idx++; }
+  });
+  return out;
+}
+function searchQuery() { const q = $('search-input').value.trim().toLowerCase(); return q.length >= 2 ? q : ''; }
+function onSearchInput() {
+  const q = searchQuery();
+  searchCurrent = -1;
+  if (!q) { searchMatches = []; clearHighlights(); $('search-count').textContent = ''; return; }
+  searchMatches = computeMatches(q);
+  $('search-count').textContent = searchMatches.length ? `1 / ${searchMatches.length}` : 'No results';
+  if (searchMatches.length) { searchCurrent = 0; jumpToMatch(0); } else clearHighlights();
+}
+function searchNav(dir) {
+  if (!searchMatches.length) return;
+  searchCurrent = (searchCurrent + dir + searchMatches.length) % searchMatches.length;
+  $('search-count').textContent = `${searchCurrent + 1} / ${searchMatches.length}`;
+  jumpToMatch(searchCurrent);
+}
+function jumpToMatch(idx) {
+  const m = searchMatches[idx];
+  if (currentIndex !== m.pageIndex) { currentIndex = m.pageIndex; renderCurrentPage(false); }
+  requestAnimationFrame(() => highlightCurrentPage(idx));
+}
+function clearHighlights() {
+  content.querySelectorAll('mark.search-hit').forEach(el => el.replaceWith(document.createTextNode(el.textContent)));
+  content.normalize();
+}
+function highlightCurrentPage(curIdx) {
+  clearHighlights();
+  const q = searchQuery();
+  if (!q) return;
+  const walker = document.createTreeWalker(content, NodeFilter.SHOW_TEXT);
+  const nodes = [];
+  while (walker.nextNode()) nodes.push(walker.currentNode);
+  nodes.forEach(node => {
+    const text = node.textContent, lower = text.toLowerCase();
+    let last = 0, idx = lower.indexOf(q), parts = [], found = false;
+    while (idx !== -1) {
+      found = true;
+      if (idx > last) parts.push(document.createTextNode(text.slice(last, idx)));
+      const mk = document.createElement('mark');
+      mk.className = 'search-hit'; mk.textContent = text.slice(idx, idx + q.length);
+      parts.push(mk); last = idx + q.length; idx = lower.indexOf(q, last);
+    }
+    if (found) {
+      if (last < text.length) parts.push(document.createTextNode(text.slice(last)));
+      node.replaceWith(...parts);
+    }
+  });
+  const hits = content.querySelectorAll('mark.search-hit');
+  const local = searchMatches.map((m, i) => ({pi: m.pageIndex, gi: i})).filter(m => m.pi === currentIndex);
+  const pos = local.findIndex(m => m.gi === curIdx);
+  if (pos >= 0 && hits[pos]) {
+    hits[pos].classList.add('current');
+    hits[pos].scrollIntoView({block: 'center', behavior: 'smooth'});
+  }
+}
+
+// ── Page rendering / navigation ──
+function renderCurrentPage(doSearch = true) {
+  const pd = PAGES[currentIndex];
+  hideTools();
+  $('cur-page').textContent = pd.msPage;
+  $('btn-prev').disabled = currentIndex === 0;
+  $('btn-next').disabled = currentIndex === PAGES.length - 1;
+  $('page-select').value = currentIndex;
+  $('tx-page-label').textContent = pd.destroyed ? 'Ms. pgs. 21–24 · 6th Sheet · DESTROYED' : 'Ms. pg. ' + pd.msPage;
+  $('tx-image-ref').textContent = (pd.pdfPage && !pd.destroyed) ? 'PDF p.' + pd.pdfPage + ' · ' + pd.half + ' half' : '';
+  content.innerHTML = pd.html;
+  renderCitation(pd);
+  $('tx-scroll').scrollTop = 0;
+  renderManuscript();
+  if (doSearch && searchMatches.length) requestAnimationFrame(() => highlightCurrentPage(searchCurrent));
+}
+function navigate(d) {
+  const n = currentIndex + d;
+  if (n < 0 || n >= PAGES.length) return;
+  currentIndex = n; renderCurrentPage();
+}
+function jumpToPage(i) { currentIndex = parseInt(i, 10); renderCurrentPage(); }
+
+// ── Legend ──
+function toggleLegend(force) {
+  const p = $('legend-panel');
+  const show = force !== undefined ? force : p.style.display !== 'block';
+  p.style.display = show ? 'block' : 'none';
+  $('legend-toggle').setAttribute('aria-expanded', show);
+}
+
+// ══════════ Reviewer edits ══════════
+const tools = $('sel-tools');
+let savedRange = null, toolsMode = 'main';
+
+function setView(name) {
+  toolsMode = name;
+  ['main', 'suggest', 'flag', 'hint'].forEach(v => $('v-' + v).classList.toggle('on', v === name));
+}
+function hideTools() {
+  if (tools.contains(document.activeElement)) document.activeElement.blur();
+  tools.classList.remove('show'); savedRange = null; setView('main');
+}
+function toolsBusy() {
+  const a = document.activeElement;
+  return tools.contains(a) && (a.tagName === 'INPUT' || a.tagName === 'SELECT');
+}
+function closestP(node) {
+  const el = node && (node.nodeType === 1 ? node : node.parentElement);
+  const p = el && el.closest('p');
+  return p && content.contains(p) ? p : null;
+}
+function positionTools(rect) {
+  if (mqPhone.matches || !rect) { tools.style.left = ''; tools.style.top = ''; return; }
+  const w = tools.offsetWidth, h = tools.offsetHeight;
+  let top = rect.top - h - 8;
+  if (top < 8) top = rect.bottom + 8;
+  let left = rect.left + rect.width / 2 - w / 2;
+  left = Math.max(8, Math.min(window.innerWidth - w - 8, left));
+  tools.style.left = left + 'px'; tools.style.top = top + 'px';
+}
+function evalSelection() {
+  if (toolsBusy()) return;
+  const sel = window.getSelection();
+  if (!sel || sel.rangeCount === 0 || sel.isCollapsed) { if (toolsMode !== 'suggest' && toolsMode !== 'flag') hideTools(); else if (!tools.contains(document.activeElement)) hideTools(); return; }
+  const r = sel.getRangeAt(0);
+  if (!content.contains(r.commonAncestorContainer)) { hideTools(); return; }
+  const rect = r.getBoundingClientRect();
+  const pa = closestP(r.startContainer), pb = closestP(r.endContainer);
+  if (!pa || pa !== pb || !r.toString().trim()) {
+    savedRange = null; setView('hint'); tools.classList.add('show'); positionTools(rect); return;
+  }
+  savedRange = r.cloneRange();
+  if (toolsMode === 'hint') setView('main');
+  tools.classList.add('show'); positionTools(rect);
+}
+let selTimer = null;
+function scheduleEval() { clearTimeout(selTimer); selTimer = setTimeout(evalSelection, 60); }
+document.addEventListener('selectionchange', scheduleEval);
+document.addEventListener('mouseup', scheduleEval);
+document.addEventListener('touchend', scheduleEval);
+$('tx-scroll').addEventListener('scroll', () => { if (tools.classList.contains('show') && !toolsBusy()) scheduleEval(); });
+tools.addEventListener('mousedown', e => { if (e.target.tagName === 'BUTTON') e.preventDefault(); });
+
+function nowHM() {
+  const d = new Date();
+  return String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0');
+}
+function persistCurrent() {
+  const clone = content.cloneNode(true);
+  clone.querySelectorAll('mark.search-hit').forEach(el => el.replaceWith(document.createTextNode(el.textContent)));
+  clone.querySelectorAll('.pulse').forEach(el => el.classList.remove('pulse'));
+  clone.normalize();
+  PAGES[currentIndex].html = clone.innerHTML;
+  recomputeText(currentIndex);
+  if (searchQuery()) { searchMatches = computeMatches(searchQuery()); if (searchCurrent >= searchMatches.length) searchCurrent = searchMatches.length - 1; }
+}
+function pulse(el) {
+  if (!el) return;
+  el.scrollIntoView({block: 'center', behavior: 'smooth'});
+  el.classList.remove('pulse'); void el.offsetWidth; el.classList.add('pulse');
+  setTimeout(() => el.classList.remove('pulse'), 1800);
+}
+
+function applyEdit(kind, opts) {
+  opts = opts || {};
+  const r = savedRange;
+  if (!r) return;
+  const text = r.toString();
+  const id = 'e' + (++editSeq);
+  const wrapper = document.createElement(kind === 'flag' ? 'mark' : 'span');
+  wrapper.setAttribute('data-edit', id);
+  let theme = null;
+  if (kind === 'uncertain') wrapper.className = 'uncertain demo-edit';
+  else if (kind === 'suggest') { wrapper.className = 'demo-edit suggest'; wrapper.setAttribute('data-orig', text); }
+  else { theme = THEMES.find(t => t[0] === opts.theme) || THEMES[8]; wrapper.className = 'flagged demo-edit flag-' + theme[1]; }
+  wrapper.appendChild(r.extractContents());
+  if (kind === 'suggest') {
+    const s = document.createElement('span');
+    s.className = 'sugg-reading'; s.textContent = ' [read: ' + opts.reading + ']';
+    wrapper.appendChild(s);
+  }
+  r.insertNode(wrapper);
+  if (kind === 'flag') {
+    const p = wrapper.closest('p');
+    const div = document.createElement('div');
+    div.className = 'flag flag-' + theme[1] + ' demo-edit';
+    div.setAttribute('data-edit', id);
+    const lab = document.createElement('span'); lab.className = 'flag-label'; lab.textContent = theme[0];
+    const passage = text.replace(/\s+/g, ' ').trim();
+    const short = passage.length > 140 ? passage.slice(0, 137) + '…' : passage;
+    div.appendChild(lab);
+    div.appendChild(document.createTextNode('“' + short + '”' + (opts.note ? ' — ' + opts.note : '')));
+    p.after(div);
+  }
+  window.getSelection().removeAllRanges();
+  hideTools();
+  persistCurrent();
+  edits.push({
+    id, pageIndex: currentIndex, msPage: PAGES[currentIndex].msPage, kind,
+    action: kind === 'uncertain' ? 'Marked uncertain' : kind === 'suggest' ? 'Suggested reading' : 'Flagged theme',
+    passage: text.replace(/\s+/g, ' ').trim(),
+    short: (() => { const t = text.replace(/\s+/g, ' ').trim(); return t.length > 140 ? t.slice(0, 137) + '…' : t; })(),
+    proposed: kind === 'suggest' ? opts.reading : kind === 'flag' ? theme[0] : '',
+    note: kind === 'flag' ? (opts.note || '') : '',
+    time: nowHM()
+  });
+  renderSheet(id);
+  if (searchQuery()) highlightCurrentPage(searchCurrent);
+  pulse(content.querySelector('[data-edit="' + id + '"]'));
+}
+
+function unwrap(el) {
+  while (el.firstChild) el.parentNode.insertBefore(el.firstChild, el);
+  el.remove();
+}
+function undoEdit(id) {
+  const ed = edits.find(e => e.id === id);
+  if (!ed) return;
+  const pi = ed.pageIndex;
+  const d = document.createElement('div');
+  d.innerHTML = PAGES[pi].html;
+  d.querySelectorAll('[data-edit="' + id + '"]').forEach(el => {
+    if (el.matches('div.flag')) el.remove();
+    else if (el.classList.contains('suggest')) {
+      el.querySelectorAll(':scope > .sugg-reading').forEach(s => s.remove());
+      if (el.firstChild) unwrap(el); else el.replaceWith(document.createTextNode(el.getAttribute('data-orig') || ''));
+    } else unwrap(el);
+  });
+  d.normalize();
+  PAGES[pi].html = d.innerHTML;
+  recomputeText(pi);
+  edits = edits.filter(e => e.id !== id);
+  if (pi === currentIndex) {
+    const st = $('tx-scroll').scrollTop;
+    hideTools();
+    content.innerHTML = PAGES[pi].html;
+    $('tx-scroll').scrollTop = st;
+  }
+  if (searchQuery()) { searchMatches = computeMatches(searchQuery()); if (searchCurrent >= searchMatches.length) searchCurrent = searchMatches.length - 1; if (pi === currentIndex) highlightCurrentPage(searchCurrent); }
+  renderSheet();
+}
+function clearAll() {
+  PAGES.forEach((p, i) => { p.html = ORIGINAL[i].html; recomputeText(i); });
+  edits = [];
+  hideTools();
+  content.innerHTML = PAGES[currentIndex].html;
+  if (searchQuery()) { searchMatches = computeMatches(searchQuery()); searchCurrent = Math.min(searchCurrent, searchMatches.length - 1); highlightCurrentPage(searchCurrent); }
+  renderSheet();
+}
+function goToEdit(ed) {
+  if (ed.pageIndex !== currentIndex) { currentIndex = ed.pageIndex; renderCurrentPage(); }
+  requestAnimationFrame(() => pulse(content.querySelector('[data-edit="' + ed.id + '"]')));
+}
+
+// ── Mock spreadsheet ──
+const HEADS = ['Ms pg', 'Action', 'Passage', 'Proposed reading / theme', 'Note', 'Reviewer', 'Time', ''];
+const COLW = ['3.2rem', '7.5rem', '', '10rem', '', '6.5rem', '3.6rem', '4.4rem'];
+function el(tag, cls, txt) { const e = document.createElement(tag); if (cls) e.className = cls; if (txt !== undefined) e.textContent = txt; return e; }
+function renderSheet(newId) {
+  const g = $('grid');
+  g.textContent = '';
+  const cg = el('colgroup'); cg.appendChild(el('col')).style.width = '2.6rem';
+  COLW.forEach(w => { const c = el('col'); if (w) c.style.width = w; cg.appendChild(c); });
+  g.appendChild(cg);
+  const thead = el('thead'), hr = el('tr');
+  hr.appendChild(el('th', 'rn', ''));
+  'ABCDEFGH'.split('').forEach(l => hr.appendChild(el('th', '', l)));
+  thead.appendChild(hr); g.appendChild(thead);
+  const tb = el('tbody');
+  const nr = el('tr', 'names'); nr.appendChild(el('th', 'rn', '1'));
+  HEADS.forEach(h => nr.appendChild(el('td', '', h)));
+  tb.appendChild(nr);
+  if (!edits.length) {
+    const tr = el('tr'); tr.appendChild(el('th', 'rn', '2'));
+    const td = el('td', 'empty', 'No edits yet. Select a few words in the transcription to mark a reading as uncertain, suggest a reading, or flag a theme. Then type a note in column E.');
+    td.colSpan = 8; tr.appendChild(td); tb.appendChild(tr);
+  }
+  edits.forEach((ed, i) => {
+    const tr = el('tr', 'edit' + (ed.id === newId ? ' new' : ''));
+    tr.tabIndex = 0; tr.dataset.edit = ed.id;
+    tr.title = 'Jump to this edit';
+    tr.appendChild(el('th', 'rn', String(i + 2)));
+    [ed.msPage, ed.action, ed.passage, ed.proposed, ed.note, 'Demo visitor', ed.time].forEach((v, k) => {
+      if (k !== 4) { tr.appendChild(el('td', k === 6 ? 'mono' : '', String(v))); return; }
+      // Column E: editable note cell
+      const td = el('td', 'note-cell'), inp = el('input', 'note-input');
+      inp.type = 'text'; inp.value = ed.note; inp.placeholder = 'Type a note…';
+      inp.setAttribute('aria-label', 'Note for row ' + (i + 2));
+      inp.addEventListener('input', () => setNote(ed, inp.value));
+      td.appendChild(inp); tr.appendChild(td);
+    });
+    const td = el('td'); const b = el('button', 'undo-btn', 'Undo');
+    b.type = 'button'; b.setAttribute('aria-label', 'Undo edit in row ' + (i + 2));
+    td.appendChild(b); tr.appendChild(td);
+    tb.appendChild(tr);
+  });
+  g.appendChild(tb);
+  updateSheetLabels();
+  if (newId) { const sc = $('sheet-scroll'); if (!mqPhone.matches) sc.scrollTop = sc.scrollHeight; }
+}
+// Note edits: stored on the row; for flags, also rewritten into the flag box in the transcription
+function setNote(ed, val) {
+  ed.note = val.trim();
+  if (ed.kind !== 'flag') return;
+  const label = '“' + ed.short + '”' + (ed.note ? ' — ' + ed.note : '');
+  const d = document.createElement('div'); d.innerHTML = PAGES[ed.pageIndex].html;
+  const box = d.querySelector('div.flag[data-edit="' + ed.id + '"]');
+  if (box) { box.lastChild.textContent = label; PAGES[ed.pageIndex].html = d.innerHTML; recomputeText(ed.pageIndex); }
+  if (ed.pageIndex === currentIndex) {
+    const live = content.querySelector('div.flag[data-edit="' + ed.id + '"]');
+    if (live) live.lastChild.textContent = label;
+  }
+}
+$('grid').addEventListener('click', e => {
+  const tr = e.target.closest('tr.edit');
+  if (!tr || e.target.closest('.note-input')) return;
+  if (e.target.closest('.undo-btn')) { undoEdit(tr.dataset.edit); return; }
+  const ed = edits.find(x => x.id === tr.dataset.edit);
+  if (ed) goToEdit(ed);
+});
+$('grid').addEventListener('keydown', e => {
+  if (e.key === 'Enter' && e.target.matches('.note-input')) { e.target.blur(); return; }
+  if (e.key === 'Enter' && e.target.matches('tr.edit')) {
+    const ed = edits.find(x => x.id === e.target.dataset.edit); if (ed) goToEdit(ed);
+  }
+});
+// Navbar button and the reopen bar both say what clicking will do
+function updateSheetLabels() {
+  const closed = $('sheet').classList.contains('closed'), n = edits.length;
+  $('sheet-toggle').textContent = (closed ? 'Show sheet (' : 'Hide sheet (') + n + ')';
+  $('sheet-reopen').textContent = '\u25B2 Show review sheet (' + n + ')';
+}
+function toggleSheet() {
+  if (mqPhone.matches) { $('sheet').scrollIntoView({behavior: 'smooth'}); return; }
+  const s = $('sheet'); s.classList.toggle('closed');
+  $('sheet-toggle').setAttribute('aria-expanded', !s.classList.contains('closed'));
+  updateSheetLabels();
+}
+
+// ── Toolbar wiring ──
+const themeSel = $('flag-theme');
+THEMES.forEach(t => { const o = document.createElement('option'); o.value = t[0]; o.textContent = t[0]; themeSel.appendChild(o); });
+$('st-uncertain').onclick = () => applyEdit('uncertain');
+$('st-suggest').onclick = () => { setView('suggest'); $('sugg-input').value = ''; positionTools(savedRange && savedRange.getBoundingClientRect()); $('sugg-input').focus(); };
+$('st-flag').onclick = () => { setView('flag'); $('flag-note').value = ''; positionTools(savedRange && savedRange.getBoundingClientRect()); themeSel.focus(); };
+function doSuggest() { const v = $('sugg-input').value.trim(); if (!v) { $('sugg-input').focus(); return; } applyEdit('suggest', {reading: v}); }
+function doFlag() { applyEdit('flag', {theme: themeSel.value, note: $('flag-note').value.trim()}); }
+$('sugg-apply').onclick = doSuggest;
+$('flag-apply').onclick = doFlag;
+$('sugg-input').addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); doSuggest(); } });
+$('flag-note').addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); doFlag(); } });
+tools.querySelectorAll('[data-cancel]').forEach(b => b.onclick = () => { setView('main'); positionTools(savedRange && savedRange.getBoundingClientRect()); });
+
+// ── Wiring + keyboard ──
+$('btn-prev').onclick = () => navigate(-1);
+$('btn-next').onclick = () => navigate(1);
+$('page-select').onchange = e => jumpToPage(e.target.value);
+$('search-toggle').onclick = openSearch;
+$('search-input').addEventListener('input', onSearchInput);
+$('search-prev').onclick = () => searchNav(-1);
+$('search-next').onclick = () => searchNav(1);
+$('search-close').onclick = closeSearch;
+$('legend-toggle').onclick = e => { e.stopPropagation(); toggleLegend(); };
+$('sheet-toggle').onclick = toggleSheet;
+$('sheet-close').onclick = toggleSheet;
+$('sheet-reopen').onclick = toggleSheet;
+$('sheet-clear').onclick = clearAll;
+
+document.addEventListener('keydown', e => {
+  if (e.ctrlKey || e.metaKey || e.altKey) return;
+  const tag = e.target.tagName;
+  if (tools.contains(e.target) && e.key === 'Escape') { setView('main'); window.getSelection().removeAllRanges(); hideTools(); return; }
+  if (tag === 'SELECT') return;
+  if (tag === 'INPUT') {
+    if (e.target.id === 'search-input') {
+      if (e.key === 'Escape') closeSearch();
+      if (e.key === 'Enter') searchNav(e.shiftKey ? -1 : 1);
+    }
+    return;
+  }
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { if (e.key === 'ArrowDown' && tag === 'BUTTON') return; navigate(1); }
+  if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { if (e.key === 'ArrowUp' && tag === 'BUTTON') return; navigate(-1); }
+  if (e.key === '/') { e.preventDefault(); openSearch(); }
+  if (e.key === 'Escape') { closeSearch(); toggleLegend(false); }
+  if (e.key === '+' || e.key === '=') adjustZoom(0.25);
+  if (e.key === '-') adjustZoom(-0.25);
+  if (e.key === '0') resetView();
+});
+document.addEventListener('click', e => {
+  const lg = $('legend-panel');
+  if (!lg.contains(e.target) && e.target !== $('legend-toggle')) toggleLegend(false);
+});
+
+// ── Init ──
+(function () {
+  const sel = $('page-select');
+  PAGES.forEach((pd, i) => {
+    const o = document.createElement('option');
+    o.value = i; o.textContent = pd.destroyed ? 'Pgs. 21–24 [destroyed]' : 'Pg. ' + pd.msPage;
+    sel.appendChild(o);
+  });
+  setupPan(); setupDivider(); renderSheet();
+  renderCurrentPage();
+})();
+</script>
+</body>
+</html>

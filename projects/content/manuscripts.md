@@ -26,7 +26,7 @@ Transcription, translation, and reading tools for nineteenth-century manuscript 
   - Watson's *Lives Lived West of the Divide* was used to disambiguate voyageur names.
   - Lesson: Markdown tables in the indexes needed strict rules (every cell filled, matching column counts) to avoid silent column collapse.
 - **Next planned:** Image-level review
-- **Public demo:** https://sarahhurlburt.com/projects/demos/fort-nez-perces/
+- **Public demo:** [Open the demo](demos/fort-nez-perces/)
 - **Rights note:** HBCA / Archives of Manitoba reproduction terms apply to page images.
 - **Changelog:**
   - 2026-05-26 — Retroactive Sory→Sous pass staged in B.146/a/1.
@@ -46,7 +46,7 @@ Transcription, translation, and reading tools for nineteenth-century manuscript 
   - Rendering at native scan resolution and showing full two-page spreads fixed early image-quality and cropping problems.
   - Features: zoom and pan, a draggable divider, full-text search across all pages, a page-jump menu, keyboard navigation, and a legend.
 - **Next planned:** A title page with document metadata; final build once the transcription edits are complete.
-- **Public demo:** https://sarahhurlburt.com/projects/demos/perkins/
+- **Public demo:** [Open the demo](demos/perkins/)
 - **Changelog:** —
 
 ## De Smet manuscripts — transcription and verification pilot
@@ -63,5 +63,5 @@ Transcription, translation, and reading tools for nineteenth-century manuscript 
   - The verification tool links each transcribed line to its location on the scan. It logs reviewer decisions and errors that were missed by the flags.
   - The tool was originally constructed to time transcription and translation review separately to measure effort for the purpose of writing a grant. This function exists but the design serves also to pilot a potential user interface.
   - The translation is deliberately close rather than fluent, since many researcher-users read no French and may wish to check against the original.
-- **Public demo:** https://sarahhurlburt.com/projects/demos/desmet/
+- **Public demo:** [Open the demo](demos/desmet/
 - **Changelog:** —

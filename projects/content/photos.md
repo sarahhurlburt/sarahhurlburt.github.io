@@ -23,6 +23,6 @@ Tools and workflows for cataloging family photograph collections, including loan
     - Opening new tabs from inside Apps Script is unreliable, so exports download instead.
   - Collaborator compatibility (an older Mac) shaped many interface decisions.
 - **Supporting documents:** Deployment checklist, new-collection link instructions, local user guide, collaborator guide
-- **Public demo:** ⟨to be made — demo copy on a dummy sheet with a few cleared or non-family images; never link the live deployment⟩
+- **Public demo:** https://sarahhurlburt.com/projects/demos/metis-photos/
 - **Rights note:** Photographs are family loans; public images only with the families' permission.
 - **Changelog:** —

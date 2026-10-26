@@ -11,7 +11,7 @@ var AREAS = [
   { key: 'photos',      label: 'Photographs', href: 'photos.html',      md: 'content/photos.md' },
   { key: 'maps',        label: 'Maps',        href: 'maps.html',        md: 'content/maps.md' }
 ];
-var NAV = [{ key: 'index', label: 'Projects', href: 'index.html' }].concat(AREAS);
+var NAV = [{ key: 'index', label: 'Projects', href: 'index.html' }].concat(AREAS, [{ key: 'demos', label: 'Demos', href: 'demos.html' }]);
 
 // Order in which fields appear on a card. Anything not listed goes last, in source order.
 var FIELD_ORDER = ['What it is', 'Source', 'Collaborator', 'Question', 'Data', 'Method',

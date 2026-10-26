@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Demos · Sarah Hurlburt</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="portal.css">
+<style>
+  .goals { padding-left: 1.4rem; margin: 0 0 2.5rem; }
+  .goals li { margin: .55rem 0; }
+  .section-label { font-family: var(--sans); font-size: .75rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin: 0 0 .5rem; font-weight: 600; }
+  .demo { border-top: 1px solid var(--rule); padding: 1.4rem 0 .6rem; }
+  .demo h2 { font-size: 1.35rem; line-height: 1.3; margin: 0 0 .4rem; font-weight: 600; }
+  .demo p { margin: 0 0 .6rem; }
+  .demo .open { font-family: var(--sans); font-size: .95rem; font-weight: 600; }
+  .demo .when { font-family: var(--sans); font-size: .8rem; color: var(--muted); margin-left: .75rem; }
+</style>
+</head>
+<body data-page="demos">
+<header id="site-header"></header>
+<main class="wrap">
+<h1>Demos</h1>
+<p class="intro">Public demonstration copies of four tools built with Claude in 2026. Each one runs on a small set of sample material; the full tools work on the complete sources.</p>
+
+<p class="section-label">Needs and goals across the four projects</p>
+<ol class="goals">
+  <li><strong>Absolute fidelity to the source.</strong> In particular: diplomatic transcription; period spellings, scribal conventions, and Indigenous names.</li>
+  <li><strong>Visible uncertainty.</strong> Doubt is marked, rated, and logged, never silently resolved.</li>
+  <li><strong>Manuscript access for all users,</strong> i.e. transparency vs. authority — the evolving editorial function.</li>
+  <li><strong>Build interaction tools for low-tech collaborators.</strong></li>
+  <li><strong>Rights and credit.</strong> Make the AI help you keep it (and you!) on the right(s) side of the line.</li>
+</ol>
+
+<section class="demo" id="fort-nez-perces">
+  <h2>Fort Nez Perces Post Journal</h2>
+  <p>A blind machine reading of five leaves of the post journal kept by Simon McGillivray Jr. (HBCA B.146/a/2, December 1831 – January 1832). Every name, Indigenous word, and uncertain reading is flagged for a reviewer to accept, correct, or escalate against the scan.</p>
+  <p><a class="open" href="demos/fort-nez-perces/">Open the demo</a></p>
+</section>
+
+<section class="demo" id="perkins">
+  <h2>Perkins Journal-Letter</h2>
+  <p>Thirteen sample pages of H.K.W. Perkins's 1843–44 journal-letter from Wascopam, facing a diplomatic transcription flagged by theme. Visitors can search, zoom, and try marking readings in a review sheet.</p>
+  <p><a class="open" href="demos/perkins/">Open the demo</a><span class="when">Demo v1 · 25 October 2026</span></p>
+</section>
+
+<section class="demo" id="metis-photos">
+  <h2>Métis photo cataloguing</h2>
+  <p>Eleven photographs, fronts and backs, from the Bernice Irene Lavadour Fitzpatrick loan, in a cataloguing tool that pairs each scan with its catalogue row.</p>
+  <p><a class="open" href="demos/metis-photos/">Open the demo</a><span class="when">Demo v1 · 25 October 2026</span></p>
+</section>
+
+<section class="demo" id="desmet">
+  <h2>De Smet manuscripts</h2>
+  <p>Fifteen pages of Pierre-Jean De Smet's French manuscripts, each line linked to the scan, with a diplomatic transcription and a close English translation for reviewers to verify.</p>
+  <p><a class="open" href="demos/desmet/">Open the demo</a><span class="when">Demo v1 · 26 October 2026</span></p>
+</section>
+</main>
+<footer id="site-footer"></footer>
+<script src="portal.js"></script>
+<script>renderChrome();</script>
+</body>
+</html>

@@ -63,5 +63,5 @@ Transcription, translation, and reading tools for nineteenth-century manuscript 
   - The verification tool links each transcribed line to its location on the scan. It logs reviewer decisions and errors that were missed by the flags.
   - The tool was originally constructed to time transcription and translation review separately to measure effort for the purpose of writing a grant. This function exists but the design serves also to pilot a potential user interface.
   - The translation is deliberately close rather than fluent, since many researcher-users read no French and may wish to check against the original.
-- **Public demo:** [Open the demo](demos/desmet/
+- **Public demo:** [Open the demo](demos/desmet/)
 - **Changelog:** —
